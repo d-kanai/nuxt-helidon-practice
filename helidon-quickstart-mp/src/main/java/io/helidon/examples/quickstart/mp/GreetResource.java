@@ -21,16 +21,16 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 
 /**
  * A simple JAX-RS resource to greet you. Examples:
- *
+ * <p>
  * Get default greeting message:
  * curl -X GET http://localhost:8080/greet
- *
+ * <p>
  * Get greeting message for Joe:
  * curl -X GET http://localhost:8080/greet/Joe
- *
+ * <p>
  * Change greeting
  * curl -X PUT -H "Content-Type: application/json" -d '{"greeting" : "Howdy"}' http://localhost:8080/greet/greeting
- *
+ * <p>
  * The message is returned as a JSON object.
  */
 @Path("/greet")
@@ -87,14 +87,8 @@ public class GreetResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @RequestBody(name = "greeting",
-            required = true,
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(type = SchemaType.OBJECT, requiredProperties = { "greeting" })))
-    @APIResponses({
-            @APIResponse(name = "normal", responseCode = "204", description = "Greeting updated"),
-            @APIResponse(name = "missing 'greeting'", responseCode = "400",
-                    description = "JSON did not contain setting for 'greeting'")})
+    @RequestBody(name = "greeting", required = true, content = @Content(mediaType = "application/json", schema = @Schema(type = SchemaType.OBJECT, requiredProperties = {"greeting"})))
+    @APIResponses({@APIResponse(name = "normal", responseCode = "204", description = "Greeting updated"), @APIResponse(name = "missing 'greeting'", responseCode = "400", description = "JSON did not contain setting for 'greeting'")})
     public Response updateGreeting(Message message) {
 
         if (message.getGreeting() == null || message.getGreeting().isEmpty()) {
