@@ -3,6 +3,9 @@ package io.helidon.examples.quickstart.mp;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
+import jakarta.json.Json;
+import jakarta.json.JsonBuilderFactory;
+import jakarta.json.JsonObject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PUT;
@@ -18,6 +21,8 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+
+import java.util.Collections;
 
 /**
  * A simple JAX-RS resource to greet you. Examples:
@@ -51,6 +56,17 @@ public class GreetResource {
     @Inject
     public GreetResource(GreetingProvider greetingConfig) {
         this.greetingProvider = greetingConfig;
+    }
+
+    private static final JsonBuilderFactory JSON = Json.createBuilderFactory(Collections.emptyMap());
+
+    @Path("/2")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject getDefaultMessage2() {
+        return JSON.createObjectBuilder()
+                .add("message", "Hello World")
+                .build();
     }
 
     /**
