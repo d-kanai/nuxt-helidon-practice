@@ -18,6 +18,7 @@ public class CreateOrderCommand {
 
     public boolean invoke(int userId) {
         UserFindByIdResponse userResponse = userExposeFindByIdQuery.findById(userId);
+        //TODO: 別境界のENUMどうする・・・
         if (!userResponse.getStatus().equals("ACTIVE")) {
             throw new RuntimeException("domain rule error");
         }
