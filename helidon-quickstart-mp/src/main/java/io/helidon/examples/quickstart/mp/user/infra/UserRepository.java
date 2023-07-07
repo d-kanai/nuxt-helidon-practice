@@ -1,10 +1,8 @@
 package io.helidon.examples.quickstart.mp.user.infra;
 
 import io.helidon.examples.quickstart.mp.user.domain.User;
-import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class UserRepository {
