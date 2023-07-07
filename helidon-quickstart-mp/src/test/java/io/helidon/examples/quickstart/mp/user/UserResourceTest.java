@@ -1,9 +1,9 @@
 package io.helidon.examples.quickstart.mp.user;
 
-import io.helidon.examples.quickstart.mp.user.domain.User;
-import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
-import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
-import io.helidon.examples.quickstart.mp.user.infra.UserRepository;
+import io.helidon.examples.quickstart.mp.modules.user.internal.domain.User;
+import io.helidon.examples.quickstart.mp.modules.user.internal.dto.UserFindByIdResponse;
+import io.helidon.examples.quickstart.mp.modules.user.expose.UserStatus;
+import io.helidon.examples.quickstart.mp.modules.user.internal.infra.UserRepository;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.WebTarget;

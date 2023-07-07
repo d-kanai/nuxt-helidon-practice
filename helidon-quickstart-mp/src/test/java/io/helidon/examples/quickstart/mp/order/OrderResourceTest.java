@@ -1,12 +1,11 @@
 package io.helidon.examples.quickstart.mp.order;
 
-import io.helidon.examples.quickstart.mp.inventory.domain.Inventory;
-import io.helidon.examples.quickstart.mp.inventory.infra.InventoryRepository;
-import io.helidon.examples.quickstart.mp.order.dto.CreateOrderResponse;
-import io.helidon.examples.quickstart.mp.order.infra.OrderRepository;
-import io.helidon.examples.quickstart.mp.user.domain.User;
-import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
-import io.helidon.examples.quickstart.mp.user.infra.UserRepository;
+import io.helidon.examples.quickstart.mp.modules.inventory.internal.domain.Inventory;
+import io.helidon.examples.quickstart.mp.modules.inventory.internal.infra.InventoryRepository;
+import io.helidon.examples.quickstart.mp.modules.order.internal.dto.CreateOrderResponse;
+import io.helidon.examples.quickstart.mp.modules.user.internal.domain.User;
+import io.helidon.examples.quickstart.mp.modules.user.expose.UserStatus;
+import io.helidon.examples.quickstart.mp.modules.user.internal.infra.UserRepository;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.WebTarget;
@@ -14,8 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -39,7 +36,6 @@ class OrderResourceTest {
         int userId = 1;
         UserRepository.users.add(new User(userId, "daiki", UserStatus.ACTIVE));
         InventoryRepository.inventories.add(new Inventory(1, Inventory.Status.NEW));
-        // user1はActive user
         //when
         CreateOrderResponse response = target.path("order/" + userId).request().get(CreateOrderResponse.class);
         //then
