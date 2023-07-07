@@ -27,8 +27,10 @@ public class CreateOrderCommand {
             throw new RuntimeException("Domain Rule Error?");
         }
         Order order = Order.NewOrder(userResponse.getId());
+        // 一貫性が必要な時は まとめたトランザクションにする。 -----------------------
         boolean isOrderCreated = orderRepository.create(order);
         inventoryExposeUseInventory.invoke(order.getId());
+        // -------------------------------------------------------------------
         return isOrderCreated;
     }
 }
