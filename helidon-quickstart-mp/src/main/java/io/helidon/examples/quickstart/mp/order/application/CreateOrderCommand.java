@@ -21,7 +21,7 @@ public class CreateOrderCommand {
     }
 
     public boolean invoke(int userId) {
-        UserFindByIdResponse userResponse = userExposeFindByIdQuery.findById(userId);
+        UserFindByIdResponse userResponse = userExposeFindByIdQuery.invoke(userId);
         //MEMO: 実際はこの例ではNonActiveUserはErrorレスポンスになるなどして、Enumを必要ない作りにするかもしれないが、Enumを公開することもあり得るというサンプル
         if (!userResponse.getStatus().equals(UserStatus.ACTIVE)) {
             throw new RuntimeException("Domain Rule Error?");
