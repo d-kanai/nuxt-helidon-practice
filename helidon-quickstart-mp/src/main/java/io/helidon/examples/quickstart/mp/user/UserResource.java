@@ -15,14 +15,20 @@ import java.util.Collections;
 public class UserResource {
 
     private static final JsonBuilderFactory JSON = Json.createBuilderFactory(Collections.emptyMap());
+    private UserFindByIdQuery userFindByIdQuery;
+
+    public UserResource() {
+        //TODO: DI
+        userFindByIdQuery = new UserFindByIdQuery();
+    }
 
     @Path("/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public UserFindByIdResponse findById(@PathParam("id") int userId) {
-        User user = new UserFindByIdQuery().invoke(userId);
+        User user = userFindByIdQuery.invoke(userId);
         //TODO: mapping いい感じにする
-        return new UserFindByIdResponse(user.getId(), user.getName());
+        return new UserFindByIdResponse(user.getId(), user.getName(), user.getStatus().toString());
     }
 
 }

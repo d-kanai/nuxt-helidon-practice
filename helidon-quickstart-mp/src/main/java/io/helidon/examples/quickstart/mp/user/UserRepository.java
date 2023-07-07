@@ -6,8 +6,8 @@ import java.util.List;
 public class UserRepository {
 
     List<User> users = Arrays.asList(
-            new User(1, "daiki"),
-            new User(2, "nanase")
+            new User(1, "daiki", User.STATUS.ACTIVE),
+            new User(2, "nanase", User.STATUS.DISABLE)
     );
 
     public User findById(int userId) {
