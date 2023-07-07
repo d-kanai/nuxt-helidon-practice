@@ -1,11 +1,16 @@
 package io.helidon.examples.quickstart.mp.user;
 
+import io.helidon.examples.quickstart.mp.user.domain.User;
 import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
 import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
+import io.helidon.examples.quickstart.mp.user.infra.UserRepository;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.WebTarget;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -16,8 +21,15 @@ class UserResourceTest {
     @Inject
     private WebTarget target;
 
+    @BeforeEach
+    void setup() {
+        UserRepository.users = new ArrayList<>();
+    }
+
     @Test
     void findById() {
+        //given
+        UserRepository.users.add(new User(1, "daiki", UserStatus.ACTIVE));
         //when
         UserFindByIdResponse response = target.path("user/1").request().get(UserFindByIdResponse.class);
         //then

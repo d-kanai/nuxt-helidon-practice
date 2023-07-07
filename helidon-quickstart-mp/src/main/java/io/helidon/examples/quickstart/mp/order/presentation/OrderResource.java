@@ -29,7 +29,7 @@ public class OrderResource {
     @Path("/{userId}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public CreateOrderResponse findById(@PathParam("userId") int userId) {
+    public CreateOrderResponse createOrder(@PathParam("userId") int userId) {
         boolean isSuccess = createOrderCommand.invoke(userId);
         return new CreateOrderResponse();
     }

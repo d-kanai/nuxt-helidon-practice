@@ -1,5 +1,6 @@
 package io.helidon.examples.quickstart.mp.order.application;
 
+import io.helidon.examples.quickstart.mp.inventory.expose.InventoryExposeUseInventory;
 import io.helidon.examples.quickstart.mp.order.domain.Order;
 import io.helidon.examples.quickstart.mp.order.infra.OrderRepository;
 import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
@@ -10,11 +11,13 @@ public class CreateOrderCommand {
 
     private final UserExposeFindByIdQuery userExposeFindByIdQuery;
     private final OrderRepository orderRepository;
+    private final InventoryExposeUseInventory inventoryExposeUseInventory;
 
     public CreateOrderCommand() {
         //TODO: DI
         orderRepository = new OrderRepository();
         userExposeFindByIdQuery = new UserExposeFindByIdQuery();
+        inventoryExposeUseInventory = new InventoryExposeUseInventory();
     }
 
     public boolean invoke(int userId) {
@@ -24,6 +27,8 @@ public class CreateOrderCommand {
             throw new RuntimeException("Domain Rule Error?");
         }
         Order order = Order.NewOrder(userResponse.getId());
-        return orderRepository.create(order);
+        boolean isOrderCreated = orderRepository.create(order);
+        inventoryExposeUseInventory.invoke(order.getId());
+        return isOrderCreated;
     }
 }
