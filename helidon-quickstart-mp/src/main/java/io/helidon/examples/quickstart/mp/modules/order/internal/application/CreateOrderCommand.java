@@ -3,8 +3,8 @@ package io.helidon.examples.quickstart.mp.modules.order.internal.application;
 import io.helidon.examples.quickstart.mp.modules.inventory.expose.InventoryExposeUseInventory;
 import io.helidon.examples.quickstart.mp.modules.order.internal.domain.Order;
 import io.helidon.examples.quickstart.mp.modules.order.internal.infra.OrderRepository;
-import io.helidon.examples.quickstart.mp.modules.user.expose.UserExposeFindByIdQueryResponse;
 import io.helidon.examples.quickstart.mp.modules.user.expose.UserExposeFindByIdQuery;
+import io.helidon.examples.quickstart.mp.modules.user.expose.UserExposeFindByIdQueryResponse;
 import io.helidon.examples.quickstart.mp.modules.user.expose.UserStatus;
 
 public class CreateOrderCommand {
