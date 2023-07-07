@@ -1,6 +1,7 @@
 package io.helidon.examples.quickstart.mp.user.infra;
 
 import io.helidon.examples.quickstart.mp.user.domain.User;
+import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 public class UserRepository {
 
     List<User> users = Arrays.asList(
-            new User(1, "daiki", User.STATUS.ACTIVE),
-            new User(2, "nanase", User.STATUS.DISABLE)
+            new User(1, "daiki", UserStatus.ACTIVE),
+            new User(2, "nanase", UserStatus.DISABLE)
     );
 
     public User findById(int userId) {

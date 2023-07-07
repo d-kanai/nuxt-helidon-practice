@@ -1,21 +1,18 @@
 package io.helidon.examples.quickstart.mp.user.domain;
 
+import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
+
 public class User {
 
     private int id;
     private String name;
-    private STATUS status;
+    private UserStatus status;
 
-    public STATUS getStatus() {
+    public UserStatus getStatus() {
         return this.status;
     }
 
-    public enum STATUS {
-        ACTIVE,
-        DISABLE,
-    }
-
-    public User(int id, String name, STATUS status) {
+    public User(int id, String name, UserStatus status) {
         this.id = id;
         this.name = name;
         this.status = status;

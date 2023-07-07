@@ -1,6 +1,7 @@
 package io.helidon.examples.quickstart.mp.user;
 
 import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
+import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.WebTarget;
@@ -22,7 +23,7 @@ class UserResourceTest {
         //then
         assertThat(response.getId(), is(1));
         assertThat(response.getName(), is("daiki"));
-        assertThat(response.getStatus(), is("ACTIVE"));
+        assertThat(response.getStatus(), is(UserStatus.ACTIVE));
     }
 
 }

@@ -5,7 +5,6 @@ import io.helidon.examples.quickstart.mp.user.application.UserFindByIdQuery;
 import io.helidon.examples.quickstart.mp.user.domain.User;
 import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.ws.rs.PathParam;
 
 @RequestScoped
 public class UserExposeFindByIdQuery {
