@@ -11,7 +11,7 @@ public class CreateOrderCommand {
 
     private final UserExposeFindByIdQuery userExposeFindByIdQuery;
     private final OrderRepository orderRepository;
-    private final InventoryExposeUseInventory inventoryExposeUseInventory;
+    private final InventoryExposeUseInventoryInterface inventoryExposeUseInventory;
 
     public CreateOrderCommand() {
         //TODO: DI

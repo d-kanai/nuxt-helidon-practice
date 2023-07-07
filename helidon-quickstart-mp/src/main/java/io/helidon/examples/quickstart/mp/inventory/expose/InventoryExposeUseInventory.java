@@ -3,11 +3,9 @@ package io.helidon.examples.quickstart.mp.inventory.expose;
 
 import io.helidon.examples.quickstart.mp.inventory.application.UseInventoryCommand;
 import io.helidon.examples.quickstart.mp.inventory.dto.UseInventoryResponse;
-import io.helidon.examples.quickstart.mp.user.application.UserFindByIdQuery;
-import io.helidon.examples.quickstart.mp.user.domain.User;
-import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
+import io.helidon.examples.quickstart.mp.order.application.InventoryExposeUseInventoryInterface;
 
-public class InventoryExposeUseInventory {
+public class InventoryExposeUseInventory implements InventoryExposeUseInventoryInterface {
 
     private UseInventoryCommand useInventoryCommand;
 
