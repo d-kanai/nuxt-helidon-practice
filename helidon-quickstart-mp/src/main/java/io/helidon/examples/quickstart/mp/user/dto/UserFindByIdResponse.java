@@ -1,16 +1,18 @@
 package io.helidon.examples.quickstart.mp.user.dto;
 
+import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
+
 //TODO All args construct + auto gettersetterで良い
 public class UserFindByIdResponse {
 
     private int id;
     private String name;
-    private String status;
+    private UserStatus status;
 
     public UserFindByIdResponse() {
     }
 
-    public UserFindByIdResponse(int id, String name, String status) {
+    public UserFindByIdResponse(int id, String name, UserStatus status) {
         this.id = id;
         this.name = name;
         //TODO: enum変換どこが良いか
@@ -34,11 +36,11 @@ public class UserFindByIdResponse {
         this.name = name;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 
-    public String getStatus() {
+    public UserStatus getStatus() {
         return this.status;
     }
 }

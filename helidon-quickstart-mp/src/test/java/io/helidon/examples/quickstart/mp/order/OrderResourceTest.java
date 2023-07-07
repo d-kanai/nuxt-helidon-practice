@@ -1,7 +1,10 @@
 package io.helidon.examples.quickstart.mp.order;
 
 import io.helidon.examples.quickstart.mp.order.dto.CreateOrderResponse;
+import io.helidon.examples.quickstart.mp.user.domain.User;
 import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
+import io.helidon.examples.quickstart.mp.user.expose.UserStatus;
+import io.helidon.examples.quickstart.mp.user.infra.UserRepository;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.WebTarget;

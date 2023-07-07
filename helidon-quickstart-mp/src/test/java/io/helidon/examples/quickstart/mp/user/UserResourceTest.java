@@ -19,7 +19,7 @@ class UserResourceTest {
     @Test
     void findById() {
         //when
-        UserFindByIdResponse response = target.path("response/1").request().get(UserFindByIdResponse.class);
+        UserFindByIdResponse response = target.path("user/1").request().get(UserFindByIdResponse.class);
         //then
         assertThat(response.getId(), is(1));
         assertThat(response.getName(), is("daiki"));

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserRepository {
 
-    List<User> users = Arrays.asList(
+    public static List<User> users = Arrays.asList(
             new User(1, "daiki", UserStatus.ACTIVE),
             new User(2, "nanase", UserStatus.DISABLE)
     );

@@ -30,7 +30,7 @@ public class UserResource {
     public UserFindByIdResponse findById(@PathParam("id") int userId) {
         User user = userFindByIdQuery.invoke(userId);
         //TODO: mapping いい感じにする
-        return new UserFindByIdResponse(user.getId(), user.getName(), user.getStatus().toString());
+        return new UserFindByIdResponse(user.getId(), user.getName(), user.getStatus());
     }
 
 }
