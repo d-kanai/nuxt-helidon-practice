@@ -1,15 +1,14 @@
 
 package io.helidon.examples.quickstart.mp.user;
 
+import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.json.Json;
 import jakarta.json.JsonBuilderFactory;
-import jakarta.json.JsonObject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
 import java.util.Collections;
-import java.util.List;
 
 @Path("/user")
 @RequestScoped
@@ -17,15 +16,14 @@ public class UserResource {
 
     private static final JsonBuilderFactory JSON = Json.createBuilderFactory(Collections.emptyMap());
 
-
+    @Path("/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public JsonObject findAll() {
-        List<User> users = new UserFindAllQuery().invoke();
-        return JSON.createObjectBuilder()
-                .add("id", users.get(0).getId())
-                .add("name", users.get(0).getName())
-                .build();
+    public UserFindByIdResponse findById(@PathParam("id") int userId) {
+        User user = new UserFindByIdQuery().invoke(userId);
+        //TODO: mapping いい感じにする
+        return new UserFindByIdResponse(user.getId(), user.getName());
     }
 
 }
+

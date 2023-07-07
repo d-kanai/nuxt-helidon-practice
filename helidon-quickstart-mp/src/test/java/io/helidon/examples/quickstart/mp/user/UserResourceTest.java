@@ -16,7 +16,7 @@ class UserResourceTest {
 
     @Test
     void findAll() {
-        User user = target.path("user").request().get(User.class);
+        User user = target.path("user/1").request().get(User.class);
         assertThat(user.getId(), is(1));
         assertThat(user.getName(), is("daiki"));
     }
