@@ -1,4 +1,7 @@
-package io.helidon.examples.quickstart.mp.user;
+package io.helidon.examples.quickstart.mp.user.application;
+
+import io.helidon.examples.quickstart.mp.user.infra.UserRepository;
+import io.helidon.examples.quickstart.mp.user.domain.User;
 
 public class UserFindByIdQuery {
 

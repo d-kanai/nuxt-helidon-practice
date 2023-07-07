@@ -1,6 +1,8 @@
 
-package io.helidon.examples.quickstart.mp.user;
+package io.helidon.examples.quickstart.mp.user.presentation;
 
+import io.helidon.examples.quickstart.mp.user.application.UserFindByIdQuery;
+import io.helidon.examples.quickstart.mp.user.domain.User;
 import io.helidon.examples.quickstart.mp.user.dto.UserFindByIdResponse;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.json.Json;

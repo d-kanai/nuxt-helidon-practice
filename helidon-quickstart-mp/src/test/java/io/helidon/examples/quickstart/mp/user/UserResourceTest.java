@@ -16,11 +16,13 @@ class UserResourceTest {
     private WebTarget target;
 
     @Test
-    void findAll() {
-        UserFindByIdResponse user = target.path("user/1").request().get(UserFindByIdResponse.class);
-        assertThat(user.getId(), is(1));
-        assertThat(user.getName(), is("daiki"));
-        assertThat(user.getStatus(), is("ACTIVE"));
+    void findById() {
+        //when
+        UserFindByIdResponse response = target.path("response/1").request().get(UserFindByIdResponse.class);
+        //then
+        assertThat(response.getId(), is(1));
+        assertThat(response.getName(), is("daiki"));
+        assertThat(response.getStatus(), is("ACTIVE"));
     }
 
 }

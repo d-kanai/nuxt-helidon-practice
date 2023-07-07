@@ -1,4 +1,6 @@
-package io.helidon.examples.quickstart.mp.user;
+package io.helidon.examples.quickstart.mp.user.infra;
+
+import io.helidon.examples.quickstart.mp.user.domain.User;
 
 import java.util.Arrays;
 import java.util.List;

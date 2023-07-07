@@ -1,4 +1,4 @@
-package io.helidon.examples.quickstart.mp.user;
+package io.helidon.examples.quickstart.mp.user.domain;
 
 public class User {
 

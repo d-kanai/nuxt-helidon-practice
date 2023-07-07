@@ -1,7 +1,5 @@
 package io.helidon.examples.quickstart.mp.user.dto;
 
-import io.helidon.examples.quickstart.mp.user.User;
-
 //TODO All args construct + auto gettersetterで良い
 public class UserFindByIdResponse {
 
