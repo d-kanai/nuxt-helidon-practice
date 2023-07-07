@@ -24,35 +24,12 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 
 import java.util.Collections;
 
-/**
- * A simple JAX-RS resource to greet you. Examples:
- * <p>
- * Get default greeting message:
- * curl -X GET http://localhost:8080/greet
- * <p>
- * Get greeting message for Joe:
- * curl -X GET http://localhost:8080/greet/Joe
- * <p>
- * Change greeting
- * curl -X PUT -H "Content-Type: application/json" -d '{"greeting" : "Howdy"}' http://localhost:8080/greet/greeting
- * <p>
- * The message is returned as a JSON object.
- */
 @Path("/greet")
 @RequestScoped
 public class GreetResource {
 
-    /**
-     * The greeting message provider.
-     */
     private final GreetingProvider greetingProvider;
 
-    /**
-     * Using constructor injection to get a configuration property.
-     * By default this gets the value from META-INF/microprofile-config
-     *
-     * @param greetingConfig the configured greeting message
-     */
     @Inject
     public GreetResource(GreetingProvider greetingConfig) {
         this.greetingProvider = greetingConfig;
@@ -64,28 +41,15 @@ public class GreetResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public JsonObject getDefaultMessage2() {
-        return JSON.createObjectBuilder()
-                .add("message", "Hello World")
-                .build();
+        return JSON.createObjectBuilder().add("message", "Hello World").build();
     }
 
-    /**
-     * Return a worldly greeting message.
-     *
-     * @return {@link Message}
-     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Message getDefaultMessage() {
         return createResponse("World");
     }
 
-    /**
-     * Return a greeting message using the name that was provided.
-     *
-     * @param name the name to greet
-     * @return {@link Message}
-     */
     @Path("/{name}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -93,12 +57,6 @@ public class GreetResource {
         return createResponse(name);
     }
 
-    /**
-     * Set the greeting to use in future messages.
-     *
-     * @param message Message containing the new greeting
-     * @return {@link Response}
-     */
     @Path("/greeting")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
