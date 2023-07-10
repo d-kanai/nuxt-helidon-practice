@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Hello World</h1>
-    <AwesomeForm />
+    <h1>Hello Nuxt3</h1>
+    <LoginForm />
   </div>
 </template>
 
