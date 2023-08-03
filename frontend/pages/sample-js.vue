@@ -1,6 +1,8 @@
 <template>
   <table class="info-table">
-    <caption>Sample Data List</caption>
+    <caption>
+      Sample Data List
+    </caption>
     <tr>
       <th>Fixed Info Title</th>
       <td>{{ fixedInfo.title }}</td>
@@ -17,7 +19,6 @@
       <th>Username</th>
       <td>{{ randomUsers[0].username }}</td>
     </tr>
-    <!-- 他のAPIデータフィールドを表示したい場合に追加 -->
     <tr>
       <th>Store Text</th>
       <td>{{ storeData.text }}</td>
@@ -29,22 +30,20 @@
   </table>
 </template>
 
-<script setup lang="ts">
-import { useSampleStore } from "~/store/sample";
+<script setup>
+import { useSampleStore } from "~/store/sample-js";
 import fixedInfo from "~/assets/fixed-info.js";
-import { getRandomUsers } from "~/utils/apiClient";
-import { RandomUsersRequest } from "types/RandomUserRequest";
-
+import { getRandomUsersJs } from "~/utils/apiClient-js";
 
 // Piniaストアからデータを取得
 const storeData = useSampleStore();
 
 // APIからデータを取得
-const request: RandomUsersRequest = {
+const request = {
   // リクエストのパラメータ
   size: 1,
 };
-const randomUsers = getRandomUsers(request);
+const randomUsers = getRandomUsersJs(request);
 </script>
 
 <style scoped>
