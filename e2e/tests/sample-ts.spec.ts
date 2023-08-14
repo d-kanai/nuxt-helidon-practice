@@ -1,4 +1,31 @@
+import { GenericContainer } from "testcontainers";
 import { test, expect } from "@playwright/test";
+
+const container = new GenericContainer("postgres")
+  .withEnvironment({
+    POSTGRES_USER: "user",
+    POSTGRES_PASSWORD: "password",
+    POSTGRES_DB: "test",
+  })
+  .withExposedPorts(5432);
+let startedContainer;
+
+test.beforeAll(async () => {
+  // PostgreSQLのコンテナを起動する
+  startedContainer = await container.start();
+  const mappedPort = startedContainer.getMappedPort(5432);
+  console.log(`Started postgres container at port ${mappedPort}`);
+
+  // 必要に応じて、DB接続と初期化処理を行う
+});
+
+test.afterAll(async () => {
+  // コンテナの停止
+  if (startedContainer) {
+    await startedContainer.stop();
+    console.log("Stopped postgres container");
+  }
+});
 
 test("ページが表示されてSample Data Listのテキストが表示されている", async ({
   page,
