@@ -20,9 +20,10 @@ if [ -e $pidFile ]; then
 fi
 
 # Download the wiremock jar if we need it
+WIREMOCK_VERSION=2.27.2
 if ! [ -e wiremock-standalone.jar ]; then
     echo WireMock standalone JAR missing. Downloading.
-    curl https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-jre8-standalone/2.35.0/wiremock-jre8-standalone-2.35.0.jar -o wiremock-standalone.jar
+    curl https://repo1.maven.org/maven2/com/github/tomakehurst/wiremock-standalone/$WIREMOCK_VERSION/wiremock-standalone-$WIREMOCK_VERSION.jar -o wiremock-standalone.jar
     status=$?
     if [ ${status} -ne 0 ]; then
         echo curl could not download WireMock JAR 1>&2
