@@ -7,7 +7,10 @@ const container = new GenericContainer("postgres")
     POSTGRES_PASSWORD: "password",
     POSTGRES_DB: "test",
   })
-  .withExposedPorts(5432);
+  .withExposedPorts({
+    container: 5432,
+    host: 5432
+  });
 let startedContainer;
 
 test.beforeAll(async () => {
