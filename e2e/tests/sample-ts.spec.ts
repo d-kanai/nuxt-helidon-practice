@@ -3,7 +3,12 @@ import path from "path";
 import { exec } from "child_process";
 import { test, expect } from "@playwright/test";
 
-const postgreContainer = new GenericContainer("postgres")
+let postgreContainer;
+let wiremockContainer;
+
+test.beforeAll(async () => {
+  // PostgreSQLのコンテナを起動する
+  postgreContainer = await (new GenericContainer("postgres")
   .withEnvironment({
     POSTGRES_USER: "user",
     POSTGRES_PASSWORD: "password",
@@ -12,29 +17,21 @@ const postgreContainer = new GenericContainer("postgres")
   .withExposedPorts({
     container: 5432,
     host: 5432,
-  });
-let wiremockContainer;
-let startedPostgreContainer;
-let startedWiremockContainer;
-
-test.beforeAll(async () => {
-  // PostgreSQLのコンテナを起動する
-  startedPostgreContainer = await postgreContainer.start();
-  const postgreMappedPort = startedPostgreContainer.getMappedPort(5432);
+  })).start();
+  const postgreMappedPort = postgreContainer.getMappedPort(5432);
   console.log(`Started postgres container at port ${postgreMappedPort}`);
 
   // Wiremockのコンテナを起動する
   const dockerfilePath = path.join(__dirname, "../../external-api/");
-  wiremockContainer = (
+  wiremockContainer = await (
     await GenericContainer.fromDockerfile(dockerfilePath).build(
       "wiremock-container"
     )
   ).withExposedPorts({
     container: 8080,
     host: 3001,
-  });
-  startedWiremockContainer = await wiremockContainer.start();
-  const wiremockMappedPort = startedWiremockContainer.getMappedPort(8080);
+  }).start();
+  const wiremockMappedPort = wiremockContainer.getMappedPort(8080);
   console.log(`Started wiremock container at port ${wiremockMappedPort}`);
 
   // 必要に応じて、DB接続と初期化処理を行う
@@ -51,13 +48,13 @@ test.beforeAll(async () => {
 
 test.afterAll(async () => {
   // コンテナの停止
-  if (startedPostgreContainer) {
-    await startedPostgreContainer.stop();
+  if (postgreContainer) {
+    await postgreContainer.stop();
     console.log("Stopped postgres container");
   }
 
-  if (startedWiremockContainer) {
-    await startedWiremockContainer.stop();
+  if (wiremockContainer) {
+    await wiremockContainer.stop();
     console.log("Stopped wiremock container");
   }
 });
