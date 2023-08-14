@@ -12,3 +12,14 @@ instance_name `3001`のフォルダが作成される。そこにマッピング
 ```
 ./stop.sh 3001
 ```
+
+# Docker
+```
+podman build -t wiremock-container .
+podman run -p 3001:8080 wiremock-container
+```
+確認  
+```
+curl -i -X GET \
+ 'http://127.0.0.1:3001/api/v1/privacy?email=john@example.com'
+```
