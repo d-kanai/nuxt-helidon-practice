@@ -1,11 +1,28 @@
 import { test, expect } from "@playwright/test";
-import { startContainers, stopContainers, cleanUnusedImages } from "./utils/container";
+import { Client } from "pg";
+import {
+  startContainers,
+  stopContainers,
+  cleanUnusedImages,
+} from "./utils/container";
+import { createCustomer, createCustomerTable, Customer, getCustomers } from "./utils/dbclient";
+
+const postgresClient: Client = new Client({
+  host: "localhost",
+  port: 5432,
+  user: "user",
+  password: "password",
+  database: "test",
+});
 
 test.beforeAll(async () => {
   await startContainers();
+  await postgresClient.connect();
+  await createCustomerTable(postgresClient);
 });
 
 test.afterAll(async () => {
+  await postgresClient.end();
   await stopContainers();
   cleanUnusedImages();
 });
@@ -43,4 +60,19 @@ test("api呼び出しで取得した情報がページに表示されている",
   // Assert
   expect(userIdExists).toBe(true);
   expect(usernameExists).toBe(true);
+});
+
+test("should create and return multiple customers", async () => {
+  // Arrange
+  const customer1: Customer = { id: 1, name: "John Doe" };
+  const customer2: Customer = { id: 2, name: "Jane Doe" };
+
+  // Act
+  await createCustomer(postgresClient, customer1);
+  await createCustomer(postgresClient, customer2);
+  const customers: Customer[] = await getCustomers(postgresClient);
+  console.log(JSON.stringify(customers));
+
+  // Assert
+  expect(customers).toEqual([customer1, customer2]);
 });

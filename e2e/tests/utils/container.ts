@@ -1,9 +1,9 @@
-import { GenericContainer } from "testcontainers";
+import { GenericContainer, StartedTestContainer } from "testcontainers";
 import path from "path";
 import { exec } from "child_process";
 
-let postgreContainer;
-let wiremockContainer;
+let postgreContainer: StartedTestContainer;
+let wiremockContainer: StartedTestContainer;
 
 async function startContainers() {
   // PostgreSQLのコンテナを起動する
@@ -63,5 +63,9 @@ function cleanUnusedImages() {
     console.error(`stderr: ${stderr}`);
   });
 }
+
+// function getPostgresSqlConnectionString() {
+//   return postgreContainer.
+// }
 
 export { startContainers, stopContainers, cleanUnusedImages };
