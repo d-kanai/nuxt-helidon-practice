@@ -6,12 +6,18 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@types/jest": "^29.5.3",
     "@types/node": "^18.16.19",
+    "@vue/test-utils": "^2.4.1",
+    "jsdom": "^22.1.0",
     "nuxt": "^3.6.2",
+    "unplugin-auto-import": "^0.16.6",
+    "vitest": "^0.34.1",
     "zod": "^3.21.4"
   },
   "overrides": {
