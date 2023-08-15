@@ -8,7 +8,9 @@
       <Field name="password" type="password" />
       <span>{{ errors.password }}</span>
       <br />
-      <button>Submit</button>
+      <button :disabled="submitting">
+        {{ submitting ? "is submitting..." : "Submit" }}
+      </button>
     </Form>
   </div>
 </template>
@@ -20,7 +22,12 @@ const schema = {
   password: "required|minLength:8|maxLength:16",
 };
 
-const onSubmit = () => {
+const submitting = ref(false);
+const onSubmit = async () => {
+  submitting.value = true;
+  // 2秒待つ
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   console.log("submit");
+  submitting.value = false;
 };
 </script>
