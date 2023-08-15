@@ -1,31 +1,26 @@
 <template>
   <div>
     <h3>LoginForm</h3>
-    <form @submit.prevent="onSubmit">
-      <input name="email" v-model="formInput.email"/>
-      <br/>
-      <input name="password" v-model="formInput.password"/>
-      <br/>
-      <input type="submit"/>
-    </form>
+    <Form @submit="onSubmit" :validation-schema="schema" v-slot="{ errors }">
+      <Field name="email" rules="required|email" />
+      <span>{{ errors.email }}</span>
+      <br />
+      <Field name="password" type="password" />
+      <span>{{ errors.password }}</span>
+      <br />
+      <button>Submit</button>
+    </Form>
   </div>
 </template>
 
 <script setup>
-import {z} from 'zod'
+import { Form, Field } from "vee-validate";
+const schema = {
+  email: "required|email",
+  password: "required|minLength:8|maxLength:16",
+};
 
-const loginFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8).max(16)
-})
-
-const formInput = ref({
-  email: '',
-  password: '',
-})
-
-const onSubmit = (e) => {
-  loginFormSchema.parse(formInput.value)
-  console.log(formInput.value)
+const onSubmit = () => {
+  console.log("submit");
 };
 </script>
