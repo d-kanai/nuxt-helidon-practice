@@ -1,26 +1,88 @@
+import { vi, expect, test, beforeAll, describe, afterEach } from "vitest";
 import { mount } from "@vue/test-utils";
-import LoginForm from "../login-form.vue"; // パスは適切に修正してください
+import flushPromises from "flush-promises";
+import waitForExpect from "wait-for-expect";
+
+import { localize, setLocale } from "@vee-validate/i18n";
+import en from "@vee-validate/i18n/dist/locale/en.json";
+import ja from "@vee-validate/i18n/dist/locale/ja.json";
+import AllRules from "@vee-validate/rules";
+import { defineRule, configure } from "vee-validate";
+
+import LoginForm from "../login-form.vue";
 
 describe("LoginForm.vue", () => {
-  it("renders without errors", () => {
+  beforeAll(() => {
+    configure({
+      generateMessage: localize({
+        en,
+        ja,
+      }),
+    });
+    Object.keys(AllRules).forEach((rule) => {
+      defineRule(rule, AllRules[rule]); // 全ルールを使えるようにする
+    });
+    defineRule("minLength", (value, [limit]) => {
+      // The field is empty so it should pass
+      if (!value || !value.length) {
+        return true;
+      }
+      if (value.length < limit) {
+        return `${limit}文字以上にしてください`;
+      }
+      return true;
+    });
+
+    defineRule("maxLength", (value, [limit]) => {
+      // The field is empty so it should pass
+      if (!value || !value.length) {
+        return true;
+      }
+      if (value.length > limit) {
+        return `${limit}文字以下にしてください`;
+      }
+      return true;
+    });
+
+    setLocale("ja");
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  test("renders without errors", () => {
     const wrapper = mount(LoginForm);
     expect(wrapper.exists()).toBeTruthy();
   });
 
-  it("displays submitting text when form is submitting", async () => {
+  test("emailが空の時に正しいエラーメッセージが表示される", async () => {
     const wrapper = mount(LoginForm);
-    const button = wrapper.find("button");
 
-    // ボタンをクリックしてsubmit処理を実行
-    await button.trigger("click");
+    // フィールド要素とボタン要素を取得
+    const emailField = wrapper.find('input[name="email"]');
 
-    // submitting状態のテキストが表示されているか確認
-    expect(button.text()).toBe("is submitting...");
+    await emailField.trigger("focus");
+    await emailField.trigger("blur");
 
-    // 2秒後の状態を確認するための待機
-    await new Promise((resolve) => setTimeout(resolve, 2100));
+    await flushPromises();
+    await waitForExpect(() => {
+      expect(wrapper.text()).toContain("emailは必須項目です"); // emailのエラーメッセージが表示されるはず
+    });
+  });
 
-    // submitting状態が終了した後のテキストを確認
-    expect(button.text()).toBe("Submit");
+  test("passwordが空の時に正しいエラーメッセージが表示される", async () => {
+    const wrapper = mount(LoginForm);
+
+    // フィールド要素とボタン要素を取得
+    const passwordField = wrapper.find('input[name="password"]');
+
+    await passwordField.trigger("focus");
+    await passwordField.trigger("blur");
+
+    await flushPromises();
+    await waitForExpect(() => {
+      expect(wrapper.text()).toContain("passwordは必須項目です"); // emailのエラーメッセージが表示されるはず
+    });
   });
 });
