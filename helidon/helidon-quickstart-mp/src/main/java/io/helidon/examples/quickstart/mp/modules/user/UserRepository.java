@@ -8,7 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class UserRepository {
     public void addUser(User user) {
         // データベースにUserを登録するロジック
-        System.out.println("Shouldn't print this log.");
+        System.out.println("UserRepository.addUser method isn't implemented.");
     }
 
     public User convertRequestToUser(UserAddRequest userAddRequest) {
