@@ -37,10 +37,8 @@ public class UserApiTest {
         int actualStatus = r.getStatus();
         String actualResponse = r.readEntity(String.class);
 
+        // Assert
         assertThat(actualStatus).isEqualTo(201);
         assertThat(actualResponse).isEqualTo(expectedResponse);
-
-
-        // Assert
     }
 }
