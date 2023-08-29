@@ -1,5 +1,7 @@
 package io.helidon.examples.quickstart.mp.modules.user;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Entity;
@@ -16,7 +18,7 @@ public class UserApiTest {
     private WebTarget target;
 
     @Test
-    void test_ユーザ登録ができること() {
+    void test_ユーザ登録ができること() throws JsonProcessingException {
         // Arrange
         //language=JSON
         String expectedResponse = "{\n" +
@@ -39,6 +41,7 @@ public class UserApiTest {
 
         // Assert
         assertThat(actualStatus).isEqualTo(201);
-        assertThat(actualResponse).isEqualTo(expectedResponse);
+        ObjectMapper mapper = new ObjectMapper();
+        assertThat(mapper.readTree(actualResponse)).isEqualTo(mapper.readTree(expectedResponse));
     }
 }
