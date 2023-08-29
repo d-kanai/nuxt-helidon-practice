@@ -26,7 +26,7 @@ public class UserApiTest {
     }
 
     @Test
-    void test_ユーザ登録ができること() throws JsonProcessingException {
+    void test_ユーザ登録APIを呼び出せること() throws JsonProcessingException {
         // Arrange
         //language=JSON
         String expectedResponse = "{\n" +
@@ -49,7 +49,6 @@ public class UserApiTest {
 
         // Assert
         assertThat(actualStatus).isEqualTo(201);
-
         assertThat(mapper.readTree(actualResponse)).isEqualTo(mapper.readTree(expectedResponse));
     }
 }
