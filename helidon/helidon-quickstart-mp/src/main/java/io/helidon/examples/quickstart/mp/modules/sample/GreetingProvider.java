@@ -1,5 +1,5 @@
 
-package io.helidon.examples.quickstart.mp;
+package io.helidon.examples.quickstart.mp.modules.sample;
 
 import java.util.concurrent.atomic.AtomicReference;
 

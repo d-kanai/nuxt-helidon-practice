@@ -1,6 +1,7 @@
 
-package io.helidon.examples.quickstart.mp;
+package io.helidon.examples.quickstart.mp.modules.sample;
 
+import io.helidon.examples.quickstart.mp.modules.sample.dto.Message;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
