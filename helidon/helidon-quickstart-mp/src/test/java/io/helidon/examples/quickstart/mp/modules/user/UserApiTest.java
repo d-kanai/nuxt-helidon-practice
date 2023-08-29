@@ -2,6 +2,7 @@ package io.helidon.examples.quickstart.mp.modules.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.helidon.examples.quickstart.mp.modules.user.domain.User;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Entity;
@@ -10,8 +11,11 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
 @HelidonTest
 public class UserApiTest {
@@ -20,8 +24,12 @@ public class UserApiTest {
 
     ObjectMapper mapper;
 
+    @Mock
+    private UserRepository userRepository;
+
     @BeforeEach
     public void beforeEach() {
+        MockitoAnnotations.initMocks(this);
         this.mapper = new ObjectMapper();
     }
 
@@ -33,6 +41,9 @@ public class UserApiTest {
                 "  \"message\":" +
                 "  \"user is created.\"\n" +
                 "}";
+        User expectedUser = new User();
+        expectedUser.setName("jiadong.chen");
+        expectedUser.setAge(39);
 
 
         // Act
@@ -50,5 +61,6 @@ public class UserApiTest {
         // Assert
         assertThat(actualStatus).isEqualTo(201);
         assertThat(mapper.readTree(actualResponse)).isEqualTo(mapper.readTree(expectedResponse));
+        verify(userRepository).addUser(expectedUser);
     }
 }
