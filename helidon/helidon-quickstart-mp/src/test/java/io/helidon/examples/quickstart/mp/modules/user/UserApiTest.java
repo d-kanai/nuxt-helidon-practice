@@ -8,6 +8,7 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -16,6 +17,13 @@ import static org.assertj.core.api.Assertions.*;
 public class UserApiTest {
     @Inject
     private WebTarget target;
+
+    ObjectMapper mapper;
+
+    @BeforeEach
+    public void beforeEach() {
+        this.mapper = new ObjectMapper();
+    }
 
     @Test
     void test_ユーザ登録ができること() throws JsonProcessingException {
@@ -41,7 +49,7 @@ public class UserApiTest {
 
         // Assert
         assertThat(actualStatus).isEqualTo(201);
-        ObjectMapper mapper = new ObjectMapper();
+
         assertThat(mapper.readTree(actualResponse)).isEqualTo(mapper.readTree(expectedResponse));
     }
 }
