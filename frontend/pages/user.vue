@@ -19,22 +19,30 @@
 
 <script setup>
 import { Form, Field } from "vee-validate";
-import { object, string } from 'yup';
-import { ref } from 'vue';
+import { object, string } from "yup";
+import { ref } from "vue";
+import axios from "axios";
 
 const submitting = ref(false);
 
 const schema = object({
-  name: string()
-    .required("Name is required"),
-  age: string()
-    .required("Age is required"),
+  name: string().required("Name is required"),
+  age: string().required("Age is required"),
 });
 
-const onSubmit = async () => {
+const onSubmit = async (values) => {
   submitting.value = true;
-  // 2秒待つ
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  try {
+    const response = await axios.post("http://localhost:8080/api/v1/user", {
+      name: values.name,
+      age: Number(values.age),
+    });
+    console.log("Response:", response);
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+
   console.log("submit");
   submitting.value = false;
 };

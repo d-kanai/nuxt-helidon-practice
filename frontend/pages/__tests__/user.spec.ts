@@ -57,11 +57,10 @@ describe("user.vue", () => {
     const wrapper = mount(UserPage);
     const nameField = wrapper.find('input[name="name"]');
     const ageField = wrapper.find('input[name="age"]');
-    const submitButton = wrapper.find('button');
 
     await nameField.setValue("jiadong.chen");
     await ageField.setValue(39);
-    await submitButton.trigger('click');
+    await wrapper.find("form").trigger("submit");
 
     // Wait for promises and axios calls to resolve
     await flushPromises();
