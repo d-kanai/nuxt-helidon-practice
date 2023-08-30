@@ -30,6 +30,7 @@
     "@vee-validate/i18n": "^4.11.1",
     "@vee-validate/rules": "^4.11.1",
     "pinia": "^2.1.6",
-    "vee-validate": "^4.11.1"
+    "vee-validate": "^4.11.1",
+    "yup": "^1.2.0"
   }
 }
