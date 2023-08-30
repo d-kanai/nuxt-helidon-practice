@@ -21,7 +21,7 @@
 import { Form, Field } from "vee-validate";
 import { object, string } from "yup";
 import { ref } from "vue";
-import axios from "axios";
+import { apis } from "../apis/apis";
 
 const submitting = ref(false);
 
@@ -33,15 +33,10 @@ const schema = object({
 const onSubmit = async (values) => {
   submitting.value = true;
 
-  try {
-    const response = await axios.post("http://localhost:8080/api/v1/user", {
-      name: values.name,
-      age: Number(values.age),
-    });
-    console.log("Response:", response);
-  } catch (error) {
-    console.error("Error submitting form:", error);
-  }
+  await apis.user.addUser({
+    name: values.name,
+    age: Number(values.age),
+  });
 
   console.log("submit");
   submitting.value = false;

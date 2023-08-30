@@ -2,15 +2,15 @@ import { expect, test, describe, beforeEach } from "vitest";
 import { mount } from "@vue/test-utils";
 import flushPromises from "flush-promises";
 import waitForExpect from "wait-for-expect";
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-
+import MockAdapter from "axios-mock-adapter";
+import { axiosInstance } from "../../apis/axios-instance";
 import UserPage from "../user.vue";
 
+const axiosMock = new MockAdapter(axiosInstance);
+
 describe("user.vue", () => {
-  let mock;
   beforeEach(() => {
-    mock = new MockAdapter(axios);
+    axiosMock.reset();
   });
   test("renders without errors", () => {
     const wrapper = mount(UserPage);
@@ -49,8 +49,8 @@ describe("user.vue", () => {
 
   test("ユーザ登録できること", async () => {
     // Arrange
-    mock.onPost('http://localhost:8080/api/v1/user').reply(200, {
-      status: 'success'
+    axiosMock.onPost("http://localhost:8080/api/v1/user").reply(200, {
+      status: "success",
     });
 
     // Act
@@ -66,11 +66,11 @@ describe("user.vue", () => {
     await flushPromises();
     await waitForExpect(() => {
       // Expect axios POST to have been made with correct data
-      expect(mock.history.post.length).toBe(1);
-      expect(mock.history.post[0].url).toBe('http://localhost:8080/api/v1/user');
-      expect(JSON.parse(mock.history.post[0].data)).toEqual({
+      expect(axiosMock.history.post.length).toBe(1);
+      expect(axiosMock.history.post[0].url).toBe("/api/v1/user");
+      expect(JSON.parse(axiosMock.history.post[0].data)).toEqual({
         name: "jiadong.chen",
-        age: 39
+        age: 39,
       });
     });
   });
