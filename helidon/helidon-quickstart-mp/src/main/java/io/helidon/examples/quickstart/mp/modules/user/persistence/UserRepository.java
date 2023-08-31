@@ -17,7 +17,8 @@ public class UserRepository {
     public UserRepository() {
         // Redisの接続情報を設定
         RedisURI redisUri = RedisURI.builder()
-                .withHost("localhost") // Redisコンテナのホスト名
+//                .withHost("localhost") // Redisコンテナのホスト名
+                .withHost("redis-container")
                 .withPort(6379)        // ポート番号
                 .withPassword("testpassword") // パスワード
                 .build();

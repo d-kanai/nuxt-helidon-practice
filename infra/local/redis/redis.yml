@@ -1,6 +1,16 @@
 version: '3'
 services:
 
+  bff:
+    container_name: bff-container
+    build:
+      context: ../../../helidon/helidon-quickstart-mp/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+
   redis:
     container_name: redis-container
     image: redis:latest
