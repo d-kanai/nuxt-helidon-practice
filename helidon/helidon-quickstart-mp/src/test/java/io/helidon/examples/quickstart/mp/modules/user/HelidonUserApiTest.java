@@ -3,19 +3,13 @@ package io.helidon.examples.quickstart.mp.modules.user;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
-import io.helidon.microprofile.config.ConfigCdiExtension;
-import io.helidon.microprofile.tests.junit5.AddBean;
-import io.helidon.microprofile.tests.junit5.AddExtension;
-import io.helidon.microprofile.tests.junit5.DisableDiscovery;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
@@ -27,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @HelidonTest
-public class UserApiTest2 {
+public class HelidonUserApiTest {
     @Inject
     private WebTarget target;
 
