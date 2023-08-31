@@ -4,7 +4,7 @@ services:
   bff:
     container_name: bff-container
     build:
-      context: ../../../helidon/helidon-quickstart-mp/
+      context: ../../helidon/helidon-quickstart-mp/
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
