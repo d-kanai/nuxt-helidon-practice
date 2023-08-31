@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddRequest;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddResponse;
+import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository;
 import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
