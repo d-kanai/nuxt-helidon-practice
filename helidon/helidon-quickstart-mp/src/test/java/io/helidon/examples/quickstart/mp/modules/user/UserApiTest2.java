@@ -3,7 +3,12 @@ package io.helidon.examples.quickstart.mp.modules.user;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
+import io.helidon.microprofile.config.ConfigCdiExtension;
+import io.helidon.microprofile.tests.junit5.AddBean;
+import io.helidon.microprofile.tests.junit5.AddExtension;
+import io.helidon.microprofile.tests.junit5.DisableDiscovery;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
@@ -13,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -27,16 +33,15 @@ public class UserApiTest2 {
 
     ObjectMapper mapper;
 
-//    @Inject
-//    private UserResource userResource;
-//
-//    @Mock
-//    private UserRepository userRepository;
+    @InjectMocks
+    private UserResource userResource;
+
+    @Mock
+    private UserRepository userRepository;
 
     @BeforeEach
     public void beforeEach() {
         MockitoAnnotations.openMocks(this);
-//        userResource.setUserRepository(userRepository);
         this.mapper = new ObjectMapper();
     }
 
@@ -52,7 +57,7 @@ public class UserApiTest2 {
         expectedUser.setName("jiadong.chen");
         expectedUser.setAge(39);
 
-//        doNothing().when(userRepository).addUser(any(User.class));
+        doNothing().when(userRepository).addUser(any(User.class));
 
 
         // Act
@@ -71,9 +76,9 @@ public class UserApiTest2 {
         assertThat(actualStatus).isEqualTo(201);
         assertThat(mapper.readTree(actualResponse)).isEqualTo(mapper.readTree(expectedResponse));
         // userRepository.addUser()が呼ばれた時の引数をチェック
-//        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
-//        verify(userRepository).addUser(captor.capture());
-//        User actualUser = captor.getValue();
-//        assertThat(actualUser).usingRecursiveComparison().isEqualTo(expectedUser);
+        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
+        verify(userRepository).addUser(captor.capture());
+        User actualUser = captor.getValue();
+        assertThat(actualUser).usingRecursiveComparison().isEqualTo(expectedUser);
     }
 }
