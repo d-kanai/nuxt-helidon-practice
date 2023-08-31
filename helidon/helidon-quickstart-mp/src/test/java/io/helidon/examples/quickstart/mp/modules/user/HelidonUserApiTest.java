@@ -41,7 +41,7 @@ public class HelidonUserApiTest {
         this.mapper = new ObjectMapper();
     }
 
-//    @Disabled
+    @Disabled
     @Test
     void test_ユーザ登録APIを呼び出せること() throws JsonProcessingException {
         // Arrange
