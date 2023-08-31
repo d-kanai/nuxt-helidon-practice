@@ -4,7 +4,6 @@ import io.helidon.examples.quickstart.mp.modules.user.domain.User;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddRequest;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddResponse;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -15,11 +14,15 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/api/v1/user")
-@ApplicationScoped
+@RequestScoped
 public class UserResource {
 
+    private final UserRepository userRepository;
+
     @Inject
-    private UserRepository userRepository;
+    public UserResource(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -33,10 +36,5 @@ public class UserResource {
 
         UserAddResponse response = new UserAddResponse("user is created.");
         return Response.status(Response.Status.CREATED).entity(response).build();
-    }
-
-    @Inject
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
     }
 }
