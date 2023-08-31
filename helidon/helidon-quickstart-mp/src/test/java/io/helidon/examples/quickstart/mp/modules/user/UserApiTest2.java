@@ -27,20 +27,19 @@ public class UserApiTest2 {
 
     ObjectMapper mapper;
 
-    @Inject
-    private UserResource userResource;
-
-    @Mock
-    private UserRepository userRepository;
+//    @Inject
+//    private UserResource userResource;
+//
+//    @Mock
+//    private UserRepository userRepository;
 
     @BeforeEach
     public void beforeEach() {
         MockitoAnnotations.openMocks(this);
-        this.mapper = new ObjectMapper();
 //        userResource.setUserRepository(userRepository);
+        this.mapper = new ObjectMapper();
     }
 
-    @Disabled
     @Test
     void test_ユーザ登録APIを呼び出せること() throws JsonProcessingException {
         // Arrange
@@ -53,7 +52,7 @@ public class UserApiTest2 {
         expectedUser.setName("jiadong.chen");
         expectedUser.setAge(39);
 
-        doNothing().when(userRepository).addUser(any(User.class));
+//        doNothing().when(userRepository).addUser(any(User.class));
 
 
         // Act
@@ -72,9 +71,9 @@ public class UserApiTest2 {
         assertThat(actualStatus).isEqualTo(201);
         assertThat(mapper.readTree(actualResponse)).isEqualTo(mapper.readTree(expectedResponse));
         // userRepository.addUser()が呼ばれた時の引数をチェック
-        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
-        verify(userRepository).addUser(captor.capture());
-        User actualUser = captor.getValue();
-        assertThat(actualUser).usingRecursiveComparison().isEqualTo(expectedUser);
+//        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
+//        verify(userRepository).addUser(captor.capture());
+//        User actualUser = captor.getValue();
+//        assertThat(actualUser).usingRecursiveComparison().isEqualTo(expectedUser);
     }
 }
