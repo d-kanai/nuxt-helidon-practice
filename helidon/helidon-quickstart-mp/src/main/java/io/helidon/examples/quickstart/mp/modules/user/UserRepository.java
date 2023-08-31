@@ -10,11 +10,4 @@ public class UserRepository {
         // データベースにUserを登録するロジック
         System.out.println("UserRepository.addUser method isn't implemented.");
     }
-
-    public User convertRequestToUser(UserAddRequest userAddRequest) {
-        User user = new User();
-        user.setName(userAddRequest.getName());
-        user.setAge(userAddRequest.getAge());
-        return user;
-    }
 }
