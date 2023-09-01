@@ -1,0 +1,15 @@
+{
+  "Servers": {
+      "1": {
+          "Name": "core-db",
+          "Group": "Servers",
+          "Host": "core-db-container",
+          "Port": 5432,
+          "Username": "postgres",
+          "Password": "postgres",
+          "SSLMode": "prefer",
+          "UseSSHTunnel": 0,
+          "MaintenanceDB": "postgres"
+      }
+  }
+}

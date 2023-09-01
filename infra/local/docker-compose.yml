@@ -50,6 +50,8 @@ services:
       POSTGRES_DB: testdb
     ports:
       - "5432:5432"
+    volumes:
+      - ./init-core-db:/docker-entrypoint-initdb.d  # ここでSQLファイルをマウント
 
   pgadmin:
     image: dpage/pgadmin4
@@ -58,6 +60,14 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
+    command:
+      - sh
+      - -c
+      - |
+        /venv/bin/python3 setup.py --load-servers servers.json --user admin@example.com
+        tail -f /dev/null
+    volumes:
+      - ./pgadmin/servers.json:/pgadmin4/servers.json
     depends_on:
       - core-db
 
