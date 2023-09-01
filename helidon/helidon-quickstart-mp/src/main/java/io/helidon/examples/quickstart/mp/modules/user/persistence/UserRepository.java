@@ -7,6 +7,8 @@ import io.lettuce.core.RedisURI;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
 public class UserRepository {
@@ -14,13 +16,17 @@ public class UserRepository {
     private final StatefulRedisConnection<String, String> connection;
     private final RedisCommands<String, String> syncCommands;
 
-    public UserRepository() {
+    @Inject
+    public UserRepository(
+            @ConfigProperty(name = "redis.host") String redisHost,
+            @ConfigProperty(name = "redis.port") int redisPort,
+            @ConfigProperty(name = "redis.password") String redisPassword) {
         // Redisの接続情報を設定
         RedisURI redisUri = RedisURI.builder()
 //                .withHost("localhost") // Redisコンテナのホスト名
-                .withHost("redis-container")
-                .withPort(6379)        // ポート番号
-                .withPassword("testpassword") // パスワード
+                .withHost(redisHost)
+                .withPort(redisPort)        // ポート番号
+                .withPassword("redisPassword") // パスワード
                 .build();
 
         this.redisClient = RedisClient.create(redisUri);

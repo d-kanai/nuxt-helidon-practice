@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
 import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository;
+import io.helidon.microprofile.tests.junit5.AddConfig;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Entity;
@@ -23,6 +24,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @HelidonTest
+@AddConfig(key = "redis.host", value = "localhost")
 public class HelidonUserApiTest {
     @Inject
     private WebTarget target;
@@ -41,7 +43,7 @@ public class HelidonUserApiTest {
         this.mapper = new ObjectMapper();
     }
 
-    @Disabled
+//    @Disabled
     @Test
     void test_ユーザ登録APIを呼び出せること() throws JsonProcessingException {
         // Arrange
