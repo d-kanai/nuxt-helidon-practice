@@ -25,6 +25,7 @@ import static org.mockito.Mockito.*;
 
 @HelidonTest
 @AddConfig(key = "redis.host", value = "localhost")
+@AddConfig(key = "core-api.host", value = "http://localhost:8081")
 public class HelidonUserApiTest {
     @Inject
     private WebTarget target;

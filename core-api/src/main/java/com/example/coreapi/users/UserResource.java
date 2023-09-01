@@ -6,6 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/api/v1/users")
 public class UserResource {
@@ -17,7 +18,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Transactional
-    public UserResponse createUser(UserRequest userRequest) {
+    public Response createUser(UserRequest userRequest) {
         UserEntity userEntity = new UserEntity();
         userEntity.setName(userRequest.getName());
         userEntity.setAge(userRequest.getAge());
@@ -27,6 +28,6 @@ public class UserResource {
         UserResponse userResponse = new UserResponse();
         userResponse.setId(userEntity.getId());
 
-        return userResponse;
+        return Response.status(201).entity(userResponse).build();
     }
 }

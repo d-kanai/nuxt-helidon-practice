@@ -32,7 +32,7 @@ public class UserResourceTest {
                 .request()
                 .post(Entity.entity(userRequest, MediaType.APPLICATION_JSON_TYPE));
 
-        assertEquals(200, response.getStatus());
+        assertEquals(201, response.getStatus());
 
         JsonObject userResponse = response.readEntity(JsonObject.class);
         assertNotNull(userResponse);
