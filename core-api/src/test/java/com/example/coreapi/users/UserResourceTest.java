@@ -1,5 +1,6 @@
 package com.example.coreapi.users;
 
+import io.helidon.microprofile.tests.junit5.AddConfig;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.inject.Inject;
 import jakarta.json.Json;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @HelidonTest
+@AddConfig(key = "javax.sql.DataSource.ds2.dataSource.url", value = "jdbc:postgresql://localhost:5432/testdb")
 public class UserResourceTest {
 
     @Inject
