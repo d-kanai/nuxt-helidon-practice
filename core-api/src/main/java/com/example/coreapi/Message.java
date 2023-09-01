@@ -1,4 +1,4 @@
-package com.example.myproject;
+package com.example.coreapi;
 
 
 public class Message {

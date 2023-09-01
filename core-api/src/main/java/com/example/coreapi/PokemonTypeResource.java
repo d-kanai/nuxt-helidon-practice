@@ -1,5 +1,5 @@
 
-package com.example.myproject;
+package com.example.coreapi;
 
 import java.util.List;
 
