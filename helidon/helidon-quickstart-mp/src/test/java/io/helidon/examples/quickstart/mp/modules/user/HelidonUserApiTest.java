@@ -62,7 +62,7 @@ public class HelidonUserApiTest {
 
         // Act
         Response r = target
-                .path("api/v1/user")
+                .path("api/v1/users")
                 .request()
                 .post(Entity.entity("{\n" +
                         "  \"name\":" +
