@@ -24,15 +24,18 @@ public class UserRepository {
     private final RedisCommands<String, String> syncCommands;
 
     private final String coreApiHost;
+    private final String coreApiPort;
 
     @Inject
     public UserRepository(
             @ConfigProperty(name = "redis.host") String redisHost,
             @ConfigProperty(name = "redis.port") int redisPort,
             @ConfigProperty(name = "redis.password") String redisPassword,
-            @ConfigProperty(name = "core-api.host") String coreApiHost
+            @ConfigProperty(name = "core-api.host") String coreApiHost,
+            @ConfigProperty(name = "core-api.port") String coreApiPort
     ) {
         this.coreApiHost = coreApiHost;
+        this.coreApiPort = coreApiPort;
         // Redisの接続情報を設定
         RedisURI redisUri = RedisURI.builder()
                 .withHost(redisHost)
@@ -57,8 +60,10 @@ public class UserRepository {
     }
 
     public Long postUserToExternalAPI(User user) {
+        String path = this.coreApiHost + ":" + this.coreApiPort + "/api/v1/users";
+        System.out.println("Api Path: " + path);
         Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(this.coreApiHost + "/api/v1/users");
+        WebTarget webTarget = client.target(path);
         Response response = webTarget
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
