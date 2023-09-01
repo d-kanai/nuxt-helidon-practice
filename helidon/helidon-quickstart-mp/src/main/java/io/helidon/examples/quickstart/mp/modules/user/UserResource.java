@@ -5,6 +5,7 @@ import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddRequest;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddResponse;
 
 import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository;
+import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepositoryImpl;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;

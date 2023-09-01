@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddRequest;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddResponse;
-import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository;
+import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepositoryImpl;
 import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +21,11 @@ public class UserApiTest {
     private UserResource target;
 
     @Mock
-    private UserRepository userRepository;
+    private UserRepositoryImpl userRepositoryImpl;
 
     @BeforeEach
     void BeforeEach() {
-        this.target = new UserResource(userRepository);
+        this.target = new UserResource(userRepositoryImpl);
     }
     @Test
     void test_ユーザ登録APIを呼び出せること() throws JsonProcessingException {
@@ -50,7 +50,7 @@ public class UserApiTest {
 
         // userRepository.addUser()が呼ばれた時の引数をチェック
         ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
-        verify(userRepository).addUser(captor.capture());
+        verify(userRepositoryImpl).addUser(captor.capture());
         User actualUser = captor.getValue();
         assertThat(actualUser).usingRecursiveComparison().isEqualTo(expectedUser);
     }
