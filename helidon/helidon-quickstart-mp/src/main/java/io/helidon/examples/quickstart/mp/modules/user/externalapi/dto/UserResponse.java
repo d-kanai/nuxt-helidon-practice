@@ -1,4 +1,4 @@
-package io.helidon.examples.quickstart.mp.modules.user.persistence.dto;
+package io.helidon.examples.quickstart.mp.modules.user.externalapi.dto;
 
 public class UserResponse {
     private Long id;

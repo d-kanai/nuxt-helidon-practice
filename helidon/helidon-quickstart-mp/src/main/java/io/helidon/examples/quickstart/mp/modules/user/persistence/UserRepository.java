@@ -2,7 +2,7 @@ package io.helidon.examples.quickstart.mp.modules.user.persistence;
 
 
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
-import io.helidon.examples.quickstart.mp.modules.user.persistence.dto.UserResponse;
+import io.helidon.examples.quickstart.mp.modules.user.externalapi.dto.UserResponse;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import io.lettuce.core.api.StatefulRedisConnection;
