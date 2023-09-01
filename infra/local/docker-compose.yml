@@ -27,9 +27,19 @@ services:
       REDIS_HOSTS: Redis:redis-container:6379:0:testpassword
       TZ: JST-9
     ports:
-      - "8081:8081"
+      - "7379:8081"
     depends_on:
       - redis
+
+  core-api:
+    container_name: core-api-container
+    build:
+      context: ../../core-api/
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    depends_on:
+      - core-db
 
   core-db:
     container_name: core-db-container

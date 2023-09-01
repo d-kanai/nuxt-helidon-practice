@@ -22,9 +22,9 @@ FROM openjdk:17-jdk-slim
 WORKDIR /helidon
 
 # Copy the binary built in the 1st stage
-COPY --from=build /helidon/target/myproject.jar ./
+COPY --from=build /helidon/target/core-api.jar ./
 COPY --from=build /helidon/target/libs ./libs
 
-CMD ["java", "-jar", "myproject.jar"]
+CMD ["java", "-jar", "core-api.jar"]
 
 EXPOSE 8080
