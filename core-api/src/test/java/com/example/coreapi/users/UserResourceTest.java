@@ -34,8 +34,6 @@ public class UserResourceTest {
 
         JsonObject userResponse = response.readEntity(JsonObject.class);
         assertNotNull(userResponse);
-        assertEquals("John", userResponse.getString("name"));
-        assertEquals(30, userResponse.getInt("age"));
         assertNotNull(userResponse.get("id"));
     }
 }

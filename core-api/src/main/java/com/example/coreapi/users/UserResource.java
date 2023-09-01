@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 @Path("/api/v1/users")
 public class UserResource {
 
-    @PersistenceContext(unitName = "myPU")
+    @PersistenceContext(unitName = "pu2")
     EntityManager em;
 
     @POST
