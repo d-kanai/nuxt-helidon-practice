@@ -23,10 +23,9 @@ public class UserRepository {
             @ConfigProperty(name = "redis.password") String redisPassword) {
         // Redisの接続情報を設定
         RedisURI redisUri = RedisURI.builder()
-//                .withHost("localhost") // Redisコンテナのホスト名
                 .withHost(redisHost)
                 .withPort(redisPort)        // ポート番号
-                .withPassword("redisPassword") // パスワード
+                .withPassword(redisPassword) // パスワード
                 .build();
 
         this.redisClient = RedisClient.create(redisUri);
