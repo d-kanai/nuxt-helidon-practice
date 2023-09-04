@@ -1,71 +1,31 @@
-import { GenericContainer, StartedTestContainer } from "testcontainers";
 import path from "path";
-import { exec } from "child_process";
+import { DockerComposeEnvironment, StartedDockerComposeEnvironment, Wait } from "testcontainers";
 
-let postgreContainer: StartedTestContainer;
-let wiremockContainer: StartedTestContainer;
+let environment: StartedDockerComposeEnvironment;
 
 async function startContainers() {
-  // PostgreSQLのコンテナを起動する
-  postgreContainer = await new GenericContainer("postgres")
-    .withEnvironment({
-      POSTGRES_USER: "user",
-      POSTGRES_PASSWORD: "password",
-      POSTGRES_DB: "test",
-    })
-    .withExposedPorts({
-      container: 5432,
-      host: 5432,
-    })
-    .start();
-  const postgreMappedPort = postgreContainer.getMappedPort(5432);
-  console.log(`Started postgres container at port ${postgreMappedPort}`);
-
-  // Wiremockのコンテナを起動する
-  const dockerfilePath = path.join(__dirname, "../../../external-api/");
-  wiremockContainer = await (
-    await GenericContainer.fromDockerfile(dockerfilePath).build(
-      "wiremock-container"
-    )
-  )
-    .withExposedPorts({
-      container: 8080,
-      host: 3001,
-    })
-    .start();
-  const wiremockMappedPort = wiremockContainer.getMappedPort(8080);
-  console.log(`Started wiremock container at port ${wiremockMappedPort}`);
+  const composeFilePath = path.join(__dirname, "../../../infra/local/");
+  const composeFile = "docker-compose.yml";
+  environment = await new DockerComposeEnvironment(composeFilePath, composeFile)
+  .withStartupTimeout(120000)
+  .withWaitStrategy("ui-container", Wait.forHttp("/user", 3000))
+  .withWaitStrategy("bff-container", Wait.forLogMessage("Server started on"))
+  .withWaitStrategy("redis-container", Wait.forLogMessage("Ready to accept connections tcp"))
+  .withWaitStrategy("redis-commander-container", Wait.forLogMessage("access with browser at"))
+  .withWaitStrategy("core-api-container", Wait.forLogMessage("Server started on"))
+  .withWaitStrategy("core-db-container", Wait.forLogMessage("database system is ready to accept connections"))
+  .withWaitStrategy("pgadmin-container", Wait.forLogMessage("Booting worker with pid"))
+  .withWaitStrategy("external-api-container", Wait.forHttp("/__admin/webapp", 3001))
+  .withBuild()
+  .up();
+  console.log("DockerCompose environment started");
 }
 
 async function stopContainers() {
-  // コンテナの停止
-  if (postgreContainer) {
-    await postgreContainer.stop();
-    console.log("Stopped postgres container");
-  }
-
-  if (wiremockContainer) {
-    await wiremockContainer.stop();
-    console.log("Stopped wiremock container");
+  if (environment) {
+    await environment.down();
+    console.log("Downed Compose environment");
   }
 }
 
-/**
- * imageのゴミを削除
- */
-function cleanUnusedImages() {
-  exec("podman image prune -f", (error, stdout, stderr) => {
-    if (error) {
-      console.error(`exec error: ${error}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-    console.error(`stderr: ${stderr}`);
-  });
-}
-
-// function getPostgresSqlConnectionString() {
-//   return postgreContainer.
-// }
-
-export { startContainers, stopContainers, cleanUnusedImages };
+export { startContainers, stopContainers };

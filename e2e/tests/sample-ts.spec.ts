@@ -3,16 +3,15 @@ import { Client } from "pg";
 import {
   startContainers,
   stopContainers,
-  cleanUnusedImages,
 } from "./utils/container";
 import { createCustomer, createCustomerTable, Customer, getCustomers } from "./utils/dbclient";
 
 const postgresClient: Client = new Client({
   host: "localhost",
   port: 5432,
-  user: "user",
-  password: "password",
-  database: "test",
+  user: "postgres",
+  password: "postgres",
+  database: "testdb",
 });
 
 test.beforeAll(async () => {
@@ -24,7 +23,6 @@ test.beforeAll(async () => {
 test.afterAll(async () => {
   await postgresClient.end();
   await stopContainers();
-  cleanUnusedImages();
 });
 
 test("ページが表示されてSample Data Listのテキストが表示されている", async ({

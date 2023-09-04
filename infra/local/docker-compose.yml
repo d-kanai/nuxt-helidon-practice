@@ -64,6 +64,7 @@ services:
       - ./init-core-db:/docker-entrypoint-initdb.d  # ここでSQLファイルをマウント
 
   pgadmin:
+    container_name: pgadmin-container
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com
@@ -80,9 +81,10 @@ services:
       - ./pgadmin/servers.json:/pgadmin4/servers.json
     depends_on:
       - core-db
+
   external-api:
-    image: "holomekc/wiremock-gui:latest"
     container_name: external-api-container
+    image: "holomekc/wiremock-gui:latest"
     ports:
       # This is just an example of a port mapping
       - "3001:3001"
