@@ -9,13 +9,10 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
 public class UserRepositoryImpl implements UserRepository{
@@ -32,7 +29,7 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     public void addUser(User user) {
-        Long id = this.postUserToExternalAPI(user);
+        Long id = this.postUserToCoreAPI(user);
         String text = "User(id=%d) is posted to External api.";
         System.out.println(String.format(text, id));
         String key = "user:" + id;
@@ -44,7 +41,7 @@ public class UserRepositoryImpl implements UserRepository{
         System.out.println("User added to Redis.");
     }
 
-    public Long postUserToExternalAPI(User user) {
+    public Long postUserToCoreAPI(User user) {
         String apiPath = "/api/v1/users";
         System.out.println("Api Path: " + apiPath);
         WebTarget webTarget = this.externalApiClient.getWebTarget();
@@ -56,11 +53,11 @@ public class UserRepositoryImpl implements UserRepository{
         Long id = null;
 
         if (response.getStatus() == 200) {
-            System.out.println("Successfully posted user to external API.");
+            System.out.println("Successfully posted user to core API.");
             UserResponse userResponse = response.readEntity(UserResponse.class);
             id = userResponse.getId();
         } else {
-            System.out.println("Failed to post user to external API. HTTP status: " + response.getStatus());
+            System.out.println("Failed to post user to core API. HTTP status: " + response.getStatus());
         }
         response.close();
         return id;
