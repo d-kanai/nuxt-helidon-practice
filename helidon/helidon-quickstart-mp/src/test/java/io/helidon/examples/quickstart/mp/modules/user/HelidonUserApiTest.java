@@ -3,6 +3,8 @@ package io.helidon.examples.quickstart.mp.modules.user;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
+import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddRequest;
+import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddResponse;
 import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository;
 import io.helidon.microprofile.tests.junit5.AddBean;
 import io.helidon.microprofile.tests.junit5.AddConfig;
@@ -40,27 +42,22 @@ public class HelidonUserApiTest {
     @Test
     void test_ユーザ登録APIを呼び出せること() throws JsonProcessingException {
         // Arrange
-        //language=JSON
-        String expectedResponse = "{\n" +
-                "  \"message\":" +
-                "  \"XXXXYYMMDD: user is created.\"\n" +
-                "}";
+        UserAddResponse expectedResponse = new UserAddResponse("XXXXYYMMDD: user is created.");
 
         // Act
+        UserAddRequest request = new UserAddRequest();
+        request.setName("jiadong.chen");
+        request.setAge(39);
         Response r = target
                 .path("api/v1/users")
                 .request()
-                .post(Entity.entity("{\n" +
-                        "  \"name\":" +
-                        "  \"jiadong.chen\",\n" +
-                        "  \"age\": 39\n" +
-                        "}", MediaType.APPLICATION_JSON));
+                .post(Entity.entity(request, MediaType.APPLICATION_JSON));
         int actualStatus = r.getStatus();
-        String actualResponse = r.readEntity(String.class);
+        UserAddResponse actualResponse = r.readEntity(UserAddResponse.class);
 
         // Assert
         assertThat(actualStatus).isEqualTo(201);
-        assertThat(mapper.readTree(actualResponse)).isEqualTo(mapper.readTree(expectedResponse));
+        assertThat(actualResponse).usingRecursiveComparison().isEqualTo(expectedResponse);
     }
 
 
