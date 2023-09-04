@@ -1,5 +1,14 @@
 version: '3'
 services:
+  ui:
+    container_name: ui-container
+    build:
+      context: ../../frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - bff
 
   bff:
     container_name: bff-container

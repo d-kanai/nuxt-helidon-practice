@@ -49,7 +49,7 @@ describe("user.vue", () => {
 
   test("ユーザ登録できること", async () => {
     // Arrange
-    axiosMock.onPost("http://localhost:8080/api/v1/users").reply(200, {
+    axiosMock.onPost("/api/v1/users").reply(200, {
       status: "success",
     });
 
