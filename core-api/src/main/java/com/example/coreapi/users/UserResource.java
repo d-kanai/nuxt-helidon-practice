@@ -28,6 +28,6 @@ public class UserResource {
         UserResponse userResponse = new UserResponse();
         userResponse.setId(userEntity.getId());
 
-        return Response.status(201).entity(userResponse).build();
+        return Response.status(200).entity(userResponse).build();
     }
 }

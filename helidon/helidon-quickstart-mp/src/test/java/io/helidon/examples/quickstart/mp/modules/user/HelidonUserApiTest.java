@@ -56,7 +56,7 @@ public class HelidonUserApiTest {
         UserAddResponse actualResponse = r.readEntity(UserAddResponse.class);
 
         // Assert
-        assertThat(actualStatus).isEqualTo(201);
+        assertThat(actualStatus).isEqualTo(200);
         assertThat(actualResponse).usingRecursiveComparison().isEqualTo(expectedResponse);
     }
 

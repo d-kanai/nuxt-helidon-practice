@@ -39,7 +39,7 @@ public class UserResource {
         userRepository.addUser(user);
         String dataTime = this.dataTimeUtils.getDateTime();
         UserAddResponse response = new UserAddResponse(dataTime + ": user is created.");
-        return Response.status(Response.Status.CREATED).entity(response).build();
+        return Response.status(Response.Status.OK).entity(response).build();
     }
 
     @OPTIONS

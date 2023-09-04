@@ -55,7 +55,7 @@ public class UserRepositoryImpl implements UserRepository{
 
         Long id = null;
 
-        if (response.getStatus() == 201) {
+        if (response.getStatus() == 200) {
             System.out.println("Successfully posted user to external API.");
             UserResponse userResponse = response.readEntity(UserResponse.class);
             id = userResponse.getId();
