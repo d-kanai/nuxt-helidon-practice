@@ -8,7 +8,6 @@ import io.helidon.microprofile.tests.junit5.AddBean;
 import io.helidon.microprofile.tests.junit5.AddConfig;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
 import jakarta.annotation.Priority;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.client.Entity;
@@ -25,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AddConfig(key = "redis.host", value = "localhost")
 @AddConfig(key = "core-api.host", value = "http://localhost")
 @AddConfig(key = "core-api.port", value = "8081")
-@AddBean(HelidonUserApiTest.FakeUserRepositoryImpl.class)
+@AddBean(HelidonUserApiTest.FakeUserRepositoryImpl.class)// FakeUserRepositoryImplクラスをCDIに入れる
 public class HelidonUserApiTest {
     @Inject
     private WebTarget target;
@@ -68,7 +67,6 @@ public class HelidonUserApiTest {
     }
 
 
-    @ApplicationScoped // アプリケーションスコープでこのBeanが生存することを示します。
     @Alternative //これは代替のクラスであり、通常のUserRepositoryImplクラスの代わりにテストで使用されることを示します。
     @Priority(1) // 同じCDIのInterfaceにInjectクラスが複数ある場合に、このクラスが優先されるようにします。
     static class FakeUserRepositoryImpl implements UserRepository {
