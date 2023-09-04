@@ -45,9 +45,6 @@ public class HelidonUserApiTest {
                 "  \"message\":" +
                 "  \"XXXXYYMMDD: user is created.\"\n" +
                 "}";
-        User expectedUser = new User();
-        expectedUser.setName("jiadong.chen");
-        expectedUser.setAge(39);
 
         // Act
         Response r = target
@@ -72,8 +69,13 @@ public class HelidonUserApiTest {
     static class FakeUserRepositoryImpl implements UserRepository {
 
         @Override
-        public void addUser(User user) {
+        public void addUser(User actualUser) {
+            User expectedUser = new User();
+            expectedUser.setName("jiadong.chen");
+            expectedUser.setAge(39);
+
             System.out.println("FakeUserRepositoryImpl.addUser is called.");
+            assertThat(actualUser).usingRecursiveComparison().isEqualTo(expectedUser);
         }
     }
 }
