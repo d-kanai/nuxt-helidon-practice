@@ -7,7 +7,11 @@ import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository
 import io.helidon.microprofile.tests.junit5.AddBean;
 import io.helidon.microprofile.tests.junit5.AddConfig;
 import io.helidon.microprofile.tests.junit5.HelidonTest;
+import jakarta.annotation.Priority;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Alternative;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
@@ -35,7 +39,6 @@ public class HelidonUserApiTest {
         this.mapper = new ObjectMapper();
     }
 
-    //    @Disabled
     @Test
     void test_ユーザ登録APIを呼び出せること() throws JsonProcessingException {
         // Arrange
@@ -66,6 +69,10 @@ public class HelidonUserApiTest {
     }
 
 
+    @Named("UserRepositoryTest") // このクラスを特定の名前で識別します。
+    @ApplicationScoped // アプリケーションスコープでこのBeanが生存することを示します。
+    @Alternative //これは代替のクラスであり、通常のUserRepositoryImplクラスの代わりにテストで使用されることを示します。
+    @Priority(1) // 代替クラスが複数ある場合に、このクラスが優先されるようにします。
     static class FakeUserRepositoryImpl implements UserRepository {
 
         @Override
