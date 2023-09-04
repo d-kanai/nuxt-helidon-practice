@@ -80,6 +80,16 @@ services:
       - ./pgadmin/servers.json:/pgadmin4/servers.json
     depends_on:
       - core-db
+  external-api:
+    image: "holomekc/wiremock-gui:latest"
+    container_name: external-api-container
+    ports:
+      # This is just an example of a port mapping
+      - "3001:3001"
+    command:
+      "--port 3001 --max-request-journal 1000 --local-response-templating --verbose"
+    volumes:
+      - ./wiremock:/home/wiremock
 
   # core-db:
   #   container_name: core-db-container
