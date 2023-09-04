@@ -18,7 +18,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-@Named("UserRepository")
 @ApplicationScoped
 public class UserRepositoryImpl implements UserRepository{
     private final RedisClient redisClient;

@@ -69,10 +69,9 @@ public class HelidonUserApiTest {
     }
 
 
-    @Named("UserRepositoryTest") // このクラスを特定の名前で識別します。
     @ApplicationScoped // アプリケーションスコープでこのBeanが生存することを示します。
     @Alternative //これは代替のクラスであり、通常のUserRepositoryImplクラスの代わりにテストで使用されることを示します。
-    @Priority(1) // 代替クラスが複数ある場合に、このクラスが優先されるようにします。
+    @Priority(1) // 同じCDIのInterfaceにInjectクラスが複数ある場合に、このクラスが優先されるようにします。
     static class FakeUserRepositoryImpl implements UserRepository {
 
         @Override
