@@ -11,7 +11,6 @@ import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Alternative;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
@@ -45,7 +44,7 @@ public class HelidonUserApiTest {
         //language=JSON
         String expectedResponse = "{\n" +
                 "  \"message\":" +
-                "  \"user is created.\"\n" +
+                "  \"XXXXYYMMDD: user is created.\"\n" +
                 "}";
         User expectedUser = new User();
         expectedUser.setName("jiadong.chen");

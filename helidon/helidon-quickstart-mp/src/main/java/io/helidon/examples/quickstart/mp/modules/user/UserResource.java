@@ -3,9 +3,8 @@ package io.helidon.examples.quickstart.mp.modules.user;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddRequest;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddResponse;
-
 import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository;
-import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepositoryImpl;
+import io.helidon.examples.quickstart.mp.utils.DataTimeUtils;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
@@ -20,10 +19,15 @@ import jakarta.ws.rs.core.Response;
 public class UserResource {
 
     private final UserRepository userRepository;
+    private final DataTimeUtils dataTimeUtils;
 
     @Inject
-    public UserResource(UserRepository userRepository) {
+    public UserResource(
+            UserRepository userRepository,
+            DataTimeUtils dataTimeUtils
+    ) {
         this.userRepository = userRepository;
+        this.dataTimeUtils = dataTimeUtils;
     }
 
     @POST
@@ -35,8 +39,8 @@ public class UserResource {
         user.setName(request.getName());
         user.setAge(request.getAge());
         userRepository.addUser(user);
-
-        UserAddResponse response = new UserAddResponse("user is created.");
+        String dataTime = this.dataTimeUtils.getDateTime();
+        UserAddResponse response = new UserAddResponse(dataTime + ": user is created.");
         return Response.status(Response.Status.CREATED).entity(response).build();
     }
 }
