@@ -49,7 +49,7 @@ describe("user.vue", () => {
 
   test("ユーザ登録できること", async () => {
     // Arrange
-    axiosMock.onPost("http://localhost:8080/api/v1/user").reply(200, {
+    axiosMock.onPost("http://localhost:8080/api/v1/users").reply(200, {
       status: "success",
     });
 
@@ -67,7 +67,7 @@ describe("user.vue", () => {
     await waitForExpect(() => {
       // Expect axios POST to have been made with correct data
       expect(axiosMock.history.post.length).toBe(1);
-      expect(axiosMock.history.post[0].url).toBe("/api/v1/user");
+      expect(axiosMock.history.post[0].url).toBe("/api/v1/users");
       expect(JSON.parse(axiosMock.history.post[0].data)).toEqual({
         name: "jiadong.chen",
         age: 39,

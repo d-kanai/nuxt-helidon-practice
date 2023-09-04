@@ -5,12 +5,10 @@ import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddRequest;
 import io.helidon.examples.quickstart.mp.modules.user.dto.UserAddResponse;
 import io.helidon.examples.quickstart.mp.modules.user.persistence.UserRepository;
 import io.helidon.examples.quickstart.mp.utils.DataTimeUtils;
+import io.helidon.microprofile.cors.CrossOrigin;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -42,5 +40,14 @@ public class UserResource {
         String dataTime = this.dataTimeUtils.getDateTime();
         UserAddResponse response = new UserAddResponse(dataTime + ": user is created.");
         return Response.status(Response.Status.CREATED).entity(response).build();
+    }
+
+    @OPTIONS
+    @CrossOrigin(
+            value = {"*"},
+            allowMethods = {"POST"}
+    )
+    public Response options() {
+        return Response.ok().build();
     }
 }

@@ -38,6 +38,10 @@
             <artifactId>helidon-microprofile-health</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.helidon.microprofile</groupId>
+            <artifactId>helidon-microprofile-cors</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.json.bind</groupId>
             <artifactId>jakarta.json.bind-api</artifactId>
         </dependency>
