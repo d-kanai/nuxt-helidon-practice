@@ -8,7 +8,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
 public class BffRedisClient {
-    private RedisClient redisClient;
+    private final RedisClient redisClient;
     @Inject
     public BffRedisClient(
             @ConfigProperty(name = "redis.host") String redisHost,

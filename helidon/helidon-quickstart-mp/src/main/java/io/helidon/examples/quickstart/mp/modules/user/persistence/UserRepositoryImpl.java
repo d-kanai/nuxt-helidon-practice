@@ -4,6 +4,7 @@ package io.helidon.examples.quickstart.mp.modules.user.persistence;
 import io.helidon.examples.quickstart.mp.modules.user.domain.User;
 import io.helidon.examples.quickstart.mp.modules.user.externalapi.dto.UserResponse;
 import io.helidon.examples.quickstart.mp.modules.user.infra.BffRedisClient;
+import io.helidon.examples.quickstart.mp.modules.user.infra.ExternalApiClient;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -19,18 +20,15 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 @ApplicationScoped
 public class UserRepositoryImpl implements UserRepository{
     private final BffRedisClient bffRedisClient;
-    private final String coreApiHost;
-    private final String coreApiPort;
+    private final ExternalApiClient externalApiClient;
 
     @Inject
     public UserRepositoryImpl(
             BffRedisClient bffRedisClient,
-            @ConfigProperty(name = "core-api.host") String coreApiHost,
-            @ConfigProperty(name = "core-api.port") String coreApiPort
+            ExternalApiClient externalApiClient
     ) {
         this.bffRedisClient = bffRedisClient;
-        this.coreApiHost = coreApiHost;
-        this.coreApiPort = coreApiPort;
+        this.externalApiClient = externalApiClient;
     }
 
     public void addUser(User user) {
@@ -47,11 +45,11 @@ public class UserRepositoryImpl implements UserRepository{
     }
 
     public Long postUserToExternalAPI(User user) {
-        String path = this.coreApiHost + ":" + this.coreApiPort + "/api/v1/users";
-        System.out.println("Api Path: " + path);
-        Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(path);
+        String apiPath = "/api/v1/users";
+        System.out.println("Api Path: " + apiPath);
+        WebTarget webTarget = this.externalApiClient.getWebTarget();
         Response response = webTarget
+                .path(apiPath)
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
