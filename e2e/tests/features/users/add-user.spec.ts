@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { DbDataSource } from "./utils/DbDataSource";
-import { Users } from "./utils/db/entities-js/Users";
+import { DbDataSource } from "../../utils/DbDataSource";
+import { Users } from "../../utils/db/entities-js/Users";
 import { DataSource, ObjectLiteral, Repository } from "typeorm";
 
 let dataSource: DataSource;
