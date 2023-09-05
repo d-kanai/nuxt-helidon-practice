@@ -1,12 +1,12 @@
 import { DataSource } from "typeorm";
 import { Users } from "./db/entities-js/Users";
 
-export class AppDataSource {
+export class DbDataSource {
   private static instance: DataSource;
   private constructor() {}
   static async getInstance(): Promise<DataSource> {
-    if (!AppDataSource.instance) {
-      AppDataSource.instance = new DataSource({
+    if (!DbDataSource.instance) {
+      DbDataSource.instance = new DataSource({
         type: "postgres",
         host: "localhost",
         port: 5432,
@@ -15,9 +15,9 @@ export class AppDataSource {
         database: "testdb",
         entities: [Users],
       });
-      await AppDataSource.instance.initialize();
+      await DbDataSource.instance.initialize();
       console.log("Data Source has been initialized!");
     }
-    return AppDataSource.instance;
+    return DbDataSource.instance;
   }
 }

@@ -1,18 +1,35 @@
 import { test, expect } from "@playwright/test";
-import { AppDataSource } from "./utils/dbclient2";
+import { DbDataSource } from "./utils/DbDataSource";
 import { Users } from "./utils/db/entities-js/Users";
 import { startContainers, stopContainers } from "./utils/container";
+import { DataSource, ObjectLiteral, Repository } from "typeorm";
+
+let dataSource: DataSource;
+let userRepository: Repository<ObjectLiteral>;
 
 test.beforeAll(async () => {
   await startContainers();
+  dataSource = await DbDataSource.getInstance();
+  userRepository = dataSource.getRepository(Users);
+});
+
+test.beforeEach(() => {
+  userRepository.clear();
 });
 
 test.afterAll(async () => {
+  await dataSource.destroy();
   await stopContainers();
 });
 
 test("ユーザ登録できること", async ({ page }) => {
   // Arrange
+  const expectedUsers = [
+    {
+      name: "jiadong.chen",
+      age: 39,
+    },
+  ];
 
   // Act
   await page.waitForLoadState("networkidle");
@@ -20,11 +37,20 @@ test("ユーザ登録できること", async ({ page }) => {
   await page.getByLabel("Name").fill("jiadong.chen");
   await page.getByLabel("Age").fill("39");
   await page.getByRole("button", { name: "Submit" }).click();
-  await page.waitForTimeout(200);
+  // /api/v1/users API からレスポンスが帰ってきてかつ status が200になるまで待つ
+  await Promise.all([
+    page.waitForResponse(
+      (response) =>
+        response.url().includes("/api/v1/users") && response.status() === 200
+    ),
+  ]);
 
-  const dataSource = await AppDataSource.getInstance();
-  const userRepository = dataSource.getRepository(Users);
-  const users = await userRepository.find();
+  const actualUsers = await userRepository.find();
+  console.log(JSON.stringify(actualUsers));
+  const actualUsersWithoutId = actualUsers.map(
+    ({ id, ...otherProps }) => otherProps
+  ); // id を除外
 
-  console.log(JSON.stringify(users));
+  // Assert
+  expect(actualUsersWithoutId).toEqual(expectedUsers);
 });
