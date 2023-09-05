@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { Users } from "./tests-out/Users";
+import { Users } from "./db/entities-js/Users";
 
 export class AppDataSource {
   private static instance: DataSource;
@@ -13,7 +13,7 @@ export class AppDataSource {
         username: "postgres",
         password: "postgres",
         database: "testdb",
-        entities: [Users]
+        entities: [Users],
       });
       await AppDataSource.instance.initialize();
       console.log("Data Source has been initialized!");

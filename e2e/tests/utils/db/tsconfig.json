@@ -7,6 +7,6 @@
     "experimentalDecorators": true,
     "sourceMap": true,
     "esModuleInterop": true,
-    "outDir": "../tests-out",
+    "outDir": "entities-js"
   }
 }
