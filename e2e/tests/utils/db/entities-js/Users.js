@@ -33,4 +33,3 @@ exports.Users = Users = __decorate([
     (0, typeorm_1.Index)("users_pkey", ["id"], { unique: true }),
     (0, typeorm_1.Entity)("users", { schema: "public" })
 ], Users);
-//# sourceMappingURL=Users.js.map
