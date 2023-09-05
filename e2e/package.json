@@ -6,7 +6,8 @@
   "scripts": {
     "test": "playwright test",
     "ui": "playwright test --ui",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "generate:entity": "typeorm-model-generator -h localhost -d testdb -p 5432 -u postgres -x postgres -e postgres -o tests/utils/db --noConfig"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,9 @@
     "@playwright/test": "^1.37.0",
     "@types/pg": "^8.10.2",
     "pg": "^8.11.2",
-    "testcontainers": "^10.2.0"
+    "testcontainers": "^10.2.0",
+    "typeorm": "^0.3.17",
+    "typeorm-model-generator": "^0.4.6",
+    "typescript": "^5.2.2"
   }
 }
