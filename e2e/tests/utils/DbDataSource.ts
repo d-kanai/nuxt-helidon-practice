@@ -20,4 +20,8 @@ export class DbDataSource {
     }
     return DbDataSource.instance;
   }
+  static async distory() {
+    DbDataSource.instance.destroy();
+    console.log("Data Source has been destroied!");
+  }
 }

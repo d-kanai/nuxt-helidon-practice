@@ -16,7 +16,7 @@ test.beforeEach(() => {
 });
 
 test.afterAll(async () => {
-  await dataSource.destroy();
+  await DbDataSource.distory();
 });
 
 test("ユーザ登録できること", async ({ page }) => {
