@@ -11,8 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
 const typeorm_1 = require("typeorm");
-// @Index("users_pkey", ["id"], { unique: true })
-// @Entity("users", { schema: "public" })
 let Users = class Users {
     id;
     name;
@@ -32,6 +30,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Users.prototype, "age", void 0);
 exports.Users = Users = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Index)("users_pkey", ["id"], { unique: true }),
+    (0, typeorm_1.Entity)("users", { schema: "public" })
 ], Users);
 //# sourceMappingURL=Users.js.map

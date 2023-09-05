@@ -3,15 +3,13 @@ import { AppDataSource } from "./utils/dbclient2";
 import { Users } from "./utils/db/entities-js/Users";
 import { startContainers, stopContainers } from "./utils/container";
 
-test.describe("add user", () => {});
+test.beforeAll(async () => {
+  await startContainers();
+});
 
-// test.beforeAll(async () => {
-//   await startContainers();
-// });
-
-// test.afterAll(async () => {
-//   await stopContainers();
-// });
+test.afterAll(async () => {
+  await stopContainers();
+});
 
 test("ユーザ登録できること", async ({ page }) => {
   // Arrange

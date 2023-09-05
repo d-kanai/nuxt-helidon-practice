@@ -7,7 +7,8 @@
     "test": "playwright test",
     "ui": "playwright test --ui",
     "report": "playwright show-report",
-    "generate:entity": "typeorm-model-generator -h localhost -d testdb -p 5432 -u postgres -x postgres -e postgres -o tests/utils/db --noConfig"
+    "generate:entities": "typeorm-model-generator -h localhost -d testdb -p 5432 -u postgres -x postgres -e postgres -o tests/utils/db/entities --noConfig",
+    "convert:entities": "tsc --incremental -p tests/utils/db/tsconfig.json"
   },
   "keywords": [],
   "author": "",
