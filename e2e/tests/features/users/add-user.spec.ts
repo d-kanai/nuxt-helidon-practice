@@ -29,6 +29,7 @@ test("ユーザ登録できること", async ({ page }) => {
   ];
 
   // Act
+  // Pageが全部ロードされるまで待つ
   await page.waitForLoadState("networkidle");
   await page.goto("http://localhost:3000/user");
   await page.getByLabel("Name").fill("jiadong.chen");
