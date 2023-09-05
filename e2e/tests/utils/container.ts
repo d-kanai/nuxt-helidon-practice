@@ -18,13 +18,13 @@ async function startContainers() {
   .withWaitStrategy("external-api-container", Wait.forHttp("/__admin/webapp", 3001))
   .withBuild()
   .up();
-  console.log("DockerCompose environment started");
+  console.log("DockerCompose environment upped.");
 }
 
 async function stopContainers() {
   if (environment) {
     await environment.down();
-    console.log("Downed Compose environment");
+    console.log("DockerCompose environment downed.");
   }
 }
 

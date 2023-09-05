@@ -1,14 +1,12 @@
 import { test, expect } from "@playwright/test";
 import { DbDataSource } from "./utils/DbDataSource";
 import { Users } from "./utils/db/entities-js/Users";
-import { startContainers, stopContainers } from "./utils/container";
 import { DataSource, ObjectLiteral, Repository } from "typeorm";
 
 let dataSource: DataSource;
 let userRepository: Repository<ObjectLiteral>;
 
 test.beforeAll(async () => {
-  await startContainers();
   dataSource = await DbDataSource.getInstance();
   userRepository = dataSource.getRepository(Users);
 });
@@ -19,7 +17,6 @@ test.beforeEach(() => {
 
 test.afterAll(async () => {
   await dataSource.destroy();
-  await stopContainers();
 });
 
 test("ユーザ登録できること", async ({ page }) => {

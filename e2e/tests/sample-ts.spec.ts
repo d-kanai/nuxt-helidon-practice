@@ -1,16 +1,4 @@
 import { test, expect } from "@playwright/test";
-import {
-  startContainers,
-  stopContainers,
-} from "./utils/container";
-
-test.beforeAll(async () => {
-  await startContainers();
-});
-
-test.afterAll(async () => {
-  await stopContainers();
-});
 
 test("ページが表示されてSample Data Listのテキストが表示されている", async ({
   page,
