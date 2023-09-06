@@ -33,20 +33,9 @@ test("ユーザ登録できること", async ({ page }) => {
     },
   ];
 
-  const stubMapping = {
-    request: {
-      method: "POST",
-      urlPath: "/api/v1/stat",
-    },
-    response: {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: '{ "message": "stat info is received." }',
-    },
-  };
-  await wireMockRestClient.mappings.createMapping(stubMapping);
+  await wireMockRestClient.mappings.createMappingsFromDir(
+    "./tests/features/users/external-api-mock"
+  );
 
   // Act
   // Pageが全部ロードされるまで待つ
