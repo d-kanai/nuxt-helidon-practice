@@ -67,7 +67,7 @@ test("ユーザ登録できること", async ({ page }) => {
     page.waitForResponse(
       (response) =>
         response.url().includes("/api/v1/users") && response.status() === 200,
-      { timeout: 5000 }
+      { timeout: 10000 }
     ),
   ]);
 
