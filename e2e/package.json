@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test",
+    "test": "DEBUG=testcontainers playwright test",
     "ui": "playwright test --ui",
     "report": "playwright show-report",
     "generate:entities": "typeorm-model-generator -h localhost -d testdb -p 5432 -u postgres -x postgres -e postgres -o tests/utils/db/entities --noConfig",
