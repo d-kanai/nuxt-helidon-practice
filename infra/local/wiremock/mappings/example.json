@@ -3,14 +3,14 @@
     {
       "request": {
         "method": "POST",
-        "urlPath": "/api/v1/stat"
+        "urlPath": "/api/v1/example"
       },
       "response": {
         "status": 200,
         "headers": {
           "Content-Type": "application/json"
         },
-        "body": "{ \"message\": \"stat info is received.\" }"
+        "body": "{ \"message\": \"this is a example.\" }"
       }
     }
   ]
