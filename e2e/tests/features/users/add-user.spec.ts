@@ -14,6 +14,7 @@ let redisClient: RedisClientType<any>
 
 test.beforeAll(async () => {
   dataSource = await DbDataSource.getInstance();
+  await dataSource.initialize();
   userRepository = dataSource.getRepository(Users);
   wireMockRestClient = ExternalApiMock.getInstance();
   redisClient = RedisClient.getInstance();
@@ -27,7 +28,7 @@ test.beforeEach(async () => {
 });
 
 test.afterAll(async () => {
-  await DbDataSource.distory();
+  await dataSource.destroy();
   await redisClient.disconnect();
 });
 

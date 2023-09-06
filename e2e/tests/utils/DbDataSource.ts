@@ -8,7 +8,7 @@ import { Users } from "./db/entities-js/Users";
 export class DbDataSource {
   private static instance: DataSource;
   private constructor() {}
-  static async getInstance(): Promise<DataSource> {
+  static getInstance(): DataSource {
     if (!DbDataSource.instance) {
       DbDataSource.instance = new DataSource({
         type: "postgres",
@@ -19,13 +19,7 @@ export class DbDataSource {
         database: "testdb",
         entities: [Users],
       });
-      await DbDataSource.instance.initialize();
-      console.log("Data Source has been initialized!");
     }
     return DbDataSource.instance;
-  }
-  static async distory() {
-    DbDataSource.instance.destroy();
-    console.log("Data Source has been destroied!");
   }
 }
