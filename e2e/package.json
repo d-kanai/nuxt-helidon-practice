@@ -20,6 +20,7 @@
     "testcontainers": "^10.2.0",
     "typeorm": "^0.3.17",
     "typeorm-model-generator": "^0.4.6",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "wiremock-rest-client": "^1.10.0"
   }
 }

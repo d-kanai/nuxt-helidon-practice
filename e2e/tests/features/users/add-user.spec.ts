@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import { DbDataSource } from "../../utils/DbDataSource";
 import { Users } from "../../utils/db/entities-js/Users";
 import { DataSource, ObjectLiteral, Repository } from "typeorm";
+import { WireMockRestClient } from "wiremock-rest-client";
 
 let dataSource: DataSource;
 let userRepository: Repository<ObjectLiteral>;
@@ -27,6 +28,23 @@ test("ユーザ登録できること", async ({ page }) => {
       age: 39,
     },
   ];
+
+  const wireMockRestClient = new WireMockRestClient("http://localhost:3001");
+  await wireMockRestClient.mappings.resetAllMappings();
+  const stubMapping = {
+    request: {
+      method: "POST",
+      urlPath: "/api/v1/stat",
+    },
+    response: {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: '{ "message": "stat info is received." }',
+    },
+  };
+  const response = await wireMockRestClient.mappings.createMapping(stubMapping);
 
   // Act
   // Pageが全部ロードされるまで待つ
