@@ -34,7 +34,7 @@ services:
     container_name: redis-commander-container
     image: rediscommander/redis-commander:latest
     environment:
-      REDIS_HOSTS: Redis:redis-container:6379:0:testpassword
+      REDIS_HOSTS: Redis:redis-container:6379:0:testpassword # Register local Redis server with Redis-Commander in advance.
       TZ: JST-9
     ports:
       - "7379:8081"
@@ -61,7 +61,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./init-core-db:/docker-entrypoint-initdb.d  # ここでSQLファイルをマウント
+      - ./init-core-db:/docker-entrypoint-initdb.d  # Table schema to be included in advance
 
   pgadmin:
     container_name: pgadmin-container
@@ -71,7 +71,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
-    command:
+    command: # Register local PostgreSQL server with pdadmin in advance.
       - sh
       - -c
       - |
@@ -86,12 +86,11 @@ services:
     container_name: external-api-container
     image: "holomekc/wiremock-gui:latest"
     ports:
-      # This is just an example of a port mapping
       - "3001:3001"
     command:
       "--port 3001 --max-request-journal 1000 --local-response-templating --verbose"
     volumes:
-      - ./wiremock:/home/wiremock
+      - ./wiremock:/home/wiremock # Mock information to be included in advance
 
   # core-db:
   #   container_name: core-db-container
