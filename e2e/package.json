@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "DEBUG=testcontainers playwright test",
-    "ui": "playwright test --ui",
+    "ui": "DEBUG=testcontainers playwright test --ui",
     "report": "playwright show-report",
     "generate:entities": "typeorm-model-generator -h localhost -d testdb -p 5432 -u postgres -x postgres -e postgres -o tests/utils/db/entities --noConfig",
     "convert:entities": "tsc --incremental -p tests/utils/db/tsconfig.json"
