@@ -1,5 +1,9 @@
 import { createClient, RedisClientType } from "redis";
 
+/**
+ * How to use Node-Redis:
+ * https://github.com/redis/node-redis
+ */
 export class RedisClient {
   private static instance: RedisClientType;
   private constructor() {}

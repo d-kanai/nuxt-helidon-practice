@@ -39,5 +39,8 @@ playwright.config.ts to start and stop the container environment before and afte
 # Use TypeORM to interact with Database
 DbDataSource.ts
 
-# User WiremockRestClient to interact with ExternalApi
+# Use WiremockRestClient to interact with ExternalApi
 ExternalApiMock.ts
+
+# Use Node-Redis to interact with Redis
+RedisClient.ts
