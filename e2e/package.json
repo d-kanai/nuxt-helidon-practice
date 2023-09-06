@@ -17,6 +17,7 @@
     "@playwright/test": "^1.37.0",
     "@types/pg": "^8.10.2",
     "pg": "^8.11.2",
+    "redis": "^4.6.8",
     "testcontainers": "^10.2.0",
     "typeorm": "^0.3.17",
     "typeorm-model-generator": "^0.4.6",

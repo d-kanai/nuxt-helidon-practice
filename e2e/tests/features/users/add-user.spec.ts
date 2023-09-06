@@ -1,27 +1,34 @@
-import { test, expect } from "@playwright/test";
-import { DbDataSource } from "../../utils/DbDataSource";
-import { Users } from "../../utils/db/entities-js/Users";
+import { expect, test } from "@playwright/test";
+import { RedisClientType } from "@redis/client";
 import { DataSource, ObjectLiteral, Repository } from "typeorm";
 import { WireMockRestClient } from "wiremock-rest-client";
+import { Users } from "../../utils/db/entities-js/Users";
+import { DbDataSource } from "../../utils/DbDataSource";
 import { ExternalApiMock } from "../../utils/ExternalApiMock";
+import { RedisClient } from "../../utils/RedisClient";
 
 let dataSource: DataSource;
 let userRepository: Repository<ObjectLiteral>;
 let wireMockRestClient: WireMockRestClient;
+let redisClient: RedisClientType<any>
 
 test.beforeAll(async () => {
   dataSource = await DbDataSource.getInstance();
   userRepository = dataSource.getRepository(Users);
   wireMockRestClient = ExternalApiMock.getInstance();
+  redisClient = RedisClient.getInstance();
+  await redisClient.connect();
 });
 
 test.beforeEach(async () => {
   await userRepository.clear();
   await wireMockRestClient.mappings.resetAllMappings();
+  await redisClient.flushDb();
 });
 
 test.afterAll(async () => {
   await DbDataSource.distory();
+  await redisClient.disconnect();
 });
 
 test("ユーザ登録できること", async ({ page }) => {
@@ -36,6 +43,8 @@ test("ユーザ登録できること", async ({ page }) => {
       age: 39,
     },
   ];
+
+  const expectedSessionItemSize = 1;
 
   await wireMockRestClient.mappings.createMappingsFromDir(
     "./tests/features/users/external-api-mock"
@@ -66,6 +75,11 @@ test("ユーザ登録できること", async ({ page }) => {
     ({ id, ...otherProps }) => otherProps
   ); // id を除外
 
+  const actualSessionKeys = await redisClient.keys("*");
+  const actualSessionItemSize = actualSessionKeys.length;
+  console.log(`redis value is ${JSON.stringify(actualSessionKeys)}`);
+
   // Assert
   expect(actualUsersWithoutId).toEqual(expectedUsers);
+  expect(actualSessionItemSize).toBe(expectedSessionItemSize);
 });
