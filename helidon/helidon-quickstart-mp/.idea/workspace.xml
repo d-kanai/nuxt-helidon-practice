@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d1b56dde-1863-4ee7-92fb-652f41712717" name="Changes" comment="refactring">
+      <change beforePath="$PROJECT_DIR$/../../e2e/tests/utils/DbDataSource.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../e2e/tests/utils/DbDataSource.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.helidon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.jlink" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.native" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/sample/GreetResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/sample/GreetingProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/sample/SimpleGreetResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/sample/dto/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/UserResource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/dto/UserAddRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/dto/UserAddResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/externalapi/dto/UserResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/infra/BffRedisClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/infra/ExternalApiClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/persistence/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/modules/user/persistence/UserRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/helidon/examples/quickstart/mp/utils/DataTimeUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/beans.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/microprofile-config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/io.helidon.examples/helidon-quickstart-mp/native-image.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logging.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/helidon/examples/quickstart/mp/modules/sample/MainTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/helidon/examples/quickstart/mp/modules/user/HelidonUserApiTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/META-INF/microprofile-config.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application.yaml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2U3hdk7aQFPa8XxeTqmzs6En8t1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jiadong.chen/git/nuxt-helidon-practice/helidon/helidon-quickstart-mp&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="io.helidon.examples.quickstart.mp.modules.user" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="io.helidon.examples.quickstart.mp.modules.sample" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="io.helidon.examples.quickstart.mp.modules.user" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.HelidonUserApiTest.test_ユーザ登録APIを呼び出せること">
+    <configuration name="HelidonUserApiTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="helidon-quickstart-mp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.helidon.examples.quickstart.mp.modules.user.persistence.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.helidon.examples.quickstart.mp.modules.user" />
+      <option name="MAIN_CLASS_NAME" value="io.helidon.examples.quickstart.mp.modules.user.HelidonUserApiTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelidonUserApiTest.test_ユーザ登録APIを呼び出せること" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="helidon-quickstart-mp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.helidon.examples.quickstart.mp.modules.user.persistence.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.helidon.examples.quickstart.mp.modules.user" />
+      <option name="MAIN_CLASS_NAME" value="io.helidon.examples.quickstart.mp.modules.user.HelidonUserApiTest" />
+      <option name="METHOD_NAME" value="test_ユーザ登録APIを呼び出せること" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApiTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="helidon-quickstart-mp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.helidon.examples.quickstart.mp.modules.user.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.helidon.examples.quickstart.mp.modules.user" />
+      <option name="MAIN_CLASS_NAME" value="io.helidon.examples.quickstart.mp.modules.user.UserApiTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApiTest.test_ユーザ登録ができること" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="helidon-quickstart-mp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.helidon.examples.quickstart.mp.modules.user.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.helidon.examples.quickstart.mp.modules.user" />
+      <option name="MAIN_CLASS_NAME" value="io.helidon.examples.quickstart.mp.modules.user.UserApiTest" />
+      <option name="METHOD_NAME" value="test_ユーザ登録ができること" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApiTest.test_ユーザ登録APIを呼び出せること" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="helidon-quickstart-mp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.helidon.examples.quickstart.mp.modules.user.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.helidon.examples.quickstart.mp.modules.user" />
+      <option name="MAIN_CLASS_NAME" value="io.helidon.examples.quickstart.mp.modules.user.UserApiTest" />
+      <option name="METHOD_NAME" value="test_ユーザ登録APIを呼び出せること" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApiTest.test_ユーザ登録APIを呼び出せること" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="helidon-quickstart-mp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.helidon.examples.quickstart.mp.modules.user.persistence.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.helidon.examples.quickstart.mp.modules.user" />
+      <option name="MAIN_CLASS_NAME" value="io.helidon.examples.quickstart.mp.modules.user.UserApiTest" />
+      <option name="METHOD_NAME" value="test_ユーザ登録APIを呼び出せること" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.HelidonUserApiTest.test_ユーザ登録APIを呼び出せること" />
+        <item itemvalue="JUnit.HelidonUserApiTest" />
+        <item itemvalue="JUnit.UserApiTest.test_ユーザ登録APIを呼び出せること" />
+        <item itemvalue="JUnit.UserApiTest" />
+        <item itemvalue="JUnit.UserApiTest.test_ユーザ登録APIを呼び出せること" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d1b56dde-1863-4ee7-92fb-652f41712717" name="Changes" comment="" />
+      <created>1692174260789</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692174260789</updated>
+    </task>
+    <task id="LOCAL-00001" summary="helidonのサンプルプロジェクを作成">
+      <option name="closed" value="true" />
+      <created>1693286044372</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693286044372</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693287446719</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1693287446719</updated>
+    </task>
+    <task id="LOCAL-00003" summary="ユーザ登録APIのAPITestを作成した">
+      <option name="closed" value="true" />
+      <created>1693290536775</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1693290536775</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693290612642</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1693290612642</updated>
+    </task>
+    <task id="LOCAL-00005" summary="API testを通らせた">
+      <option name="closed" value="true" />
+      <created>1693294201609</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693294201609</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactoring test code">
+      <option name="closed" value="true" />
+      <created>1693294356458</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693294356458</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693294431848</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693294431848</updated>
+    </task>
+    <task id="LOCAL-00008" summary="UserRepositoryのaddUserメソッドが呼び出されたかチェックする内容を追加した">
+      <option name="closed" value="true" />
+      <created>1693295837813</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693295837813</updated>
+    </task>
+    <task id="LOCAL-00009" summary="UserRepository関連の追加をした">
+      <option name="closed" value="true" />
+      <created>1693300697524</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693300697524</updated>
+    </task>
+    <task id="LOCAL-00010" summary="UserApiTestにおいて、userRepositoryのMockを使えるようにした">
+      <option name="closed" value="true" />
+      <created>1693302216495</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1693302216495</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Refactoring">
+      <option name="closed" value="true" />
+      <created>1693302345857</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693302345857</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add API Test sample by using @HelidonTest and WebTarget">
+      <option name="closed" value="true" />
+      <created>1693362306480</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1693362306480</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Refactoring">
+      <option name="closed" value="true" />
+      <created>1693444021510</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1693444021510</updated>
+    </task>
+    <task id="LOCAL-00014" summary="let UserApiTest2 pass">
+      <option name="closed" value="true" />
+      <created>1693446795494</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1693446795494</updated>
+    </task>
+    <task id="LOCAL-00015" summary="let UserApiTest2 fail">
+      <option name="closed" value="true" />
+      <created>1693448388583</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1693448388583</updated>
+    </task>
+    <task id="LOCAL-00016" summary="change class name">
+      <option name="closed" value="true" />
+      <created>1693449487144</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1693449487144</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693450192989</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1693450192989</updated>
+    </task>
+    <task id="LOCAL-00018" summary="LocalでRedisを起動できるようにした">
+      <option name="closed" value="true" />
+      <created>1693464503219</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1693464503219</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Refactoring">
+      <option name="closed" value="true" />
+      <created>1693464583589</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1693464583589</updated>
+    </task>
+    <task id="LOCAL-00020" summary="UserRepositoryでredisにuser情報をPutできるようにした">
+      <option name="closed" value="true" />
+      <created>1693464610776</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1693464610776</updated>
+    </task>
+    <task id="LOCAL-00021" summary="UserRepositoryでredisにuser情報をPutできるようにした">
+      <option name="closed" value="true" />
+      <created>1693464638078</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1693464638078</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Refactoring">
+      <option name="closed" value="true" />
+      <created>1693464697025</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693464697025</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Redis commanderのUI表示項目名を修正した">
+      <option name="closed" value="true" />
+      <created>1693465101988</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1693465101988</updated>
+    </task>
+    <task id="LOCAL-00024" summary="test all green">
+      <option name="closed" value="true" />
+      <created>1693465120447</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1693465120447</updated>
+    </task>
+    <task id="LOCAL-00025" summary="コンテナ環境でbffからredisへのデータPutを実現した">
+      <option name="closed" value="true" />
+      <created>1693473799222</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1693473799222</updated>
+    </task>
+    <task id="LOCAL-00026" summary="JUnitでテスト用の設定を読み込むようにした">
+      <option name="closed" value="true" />
+      <created>1693544677978</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1693544677978</updated>
+    </task>
+    <task id="LOCAL-00027" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693555115374</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1693555115374</updated>
+    </task>
+    <task id="LOCAL-00028" summary="container環境でbffとcore-apiの疎通ができた">
+      <option name="closed" value="true" />
+      <created>1693558797181</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1693558797181</updated>
+    </task>
+    <task id="LOCAL-00029" summary="helidonのgithubでapitestについて質問したら回答があった。その回答通りにAPI Testを修正したら、うまくいっていない。">
+      <option name="closed" value="true" />
+      <created>1693560770162</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1693560770162</updated>
+    </task>
+    <task id="LOCAL-00030" summary="FakeUserRepositoryImplを使ってUserRepositoryImplを代替できた">
+      <option name="closed" value="true" />
+      <created>1693792760562</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1693792760562</updated>
+    </task>
+    <task id="LOCAL-00031" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693793241308</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1693793241308</updated>
+    </task>
+    <task id="LOCAL-00032" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693794022774</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1693794022774</updated>
+    </task>
+    <task id="LOCAL-00033" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693794642762</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1693794642762</updated>
+    </task>
+    <task id="LOCAL-00034" summary="一部のCDIインスタンスをモックする検証ができた">
+      <option name="closed" value="true" />
+      <created>1693795152246</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1693795152246</updated>
+    </task>
+    <task id="LOCAL-00035" summary="refactoring">
+      <option name="closed" value="true" />
+      <created>1693795652085</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1693795652085</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Mockのメソッドが呼ばれた時の引数をチェックするようにした">
+      <option name="closed" value="true" />
+      <created>1693796774889</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1693796774889</updated>
+    </task>
+    <task id="LOCAL-00037" summary="refactring">
+      <option name="closed" value="true" />
+      <created>1693797305524</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1693797305524</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="helidonのサンプルプロジェクを作成" />
+    <MESSAGE value="ユーザ登録APIのAPITestを作成した" />
+    <MESSAGE value="API testを通らせた" />
+    <MESSAGE value="refactoring test code" />
+    <MESSAGE value="UserRepositoryのaddUserメソッドが呼び出されたかチェックする内容を追加した" />
+    <MESSAGE value="UserRepository関連の追加をした" />
+    <MESSAGE value="UserApiTestにおいて、userRepositoryのMockを使えるようにした" />
+    <MESSAGE value="add API Test sample by using @HelidonTest and WebTarget" />
+    <MESSAGE value="let UserApiTest2 pass" />
+    <MESSAGE value="let UserApiTest2 fail" />
+    <MESSAGE value="change class name" />
+    <MESSAGE value="LocalでRedisを起動できるようにした" />
+    <MESSAGE value="UserRepositoryでredisにuser情報をPutできるようにした" />
+    <MESSAGE value="Refactoring" />
+    <MESSAGE value="Redis commanderのUI表示項目名を修正した" />
+    <MESSAGE value="test all green" />
+    <MESSAGE value="コンテナ環境でbffからredisへのデータPutを実現した" />
+    <MESSAGE value="JUnitでテスト用の設定を読み込むようにした" />
+    <MESSAGE value="container環境でbffとcore-apiの疎通ができた" />
+    <MESSAGE value="helidonのgithubでapitestについて質問したら回答があった。その回答通りにAPI Testを修正したら、うまくいっていない。" />
+    <MESSAGE value="FakeUserRepositoryImplを使ってUserRepositoryImplを代替できた" />
+    <MESSAGE value="一部のCDIインスタンスをモックする検証ができた" />
+    <MESSAGE value="refactoring" />
+    <MESSAGE value="Mockのメソッドが呼ばれた時の引数をチェックするようにした" />
+    <MESSAGE value="refactring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactring" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

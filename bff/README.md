@@ -1,17 +1,18 @@
-# helidon-quickstart-mp
+# bff
 
 Minimal Helidon MP project suitable to start from scratch.
 
 ## Build and run
 
-
 With JDK17+
+
 ```bash
 mvn package
-java -jar target/helidon-quickstart-mp.jar
+java -jar target/bff.jar
 ```
 
 ## Exercise the application
+
 ```
 curl -X GET http://localhost:8080/simple-greet
 {"message":"Hello World!"}
@@ -30,8 +31,6 @@ curl -X GET http://localhost:8080/greet/Jose
 {"message":"Hola Jose!"}
 ```
 
-
-
 ## Try metrics
 
 ```
@@ -46,8 +45,6 @@ curl -H 'Accept: application/json' -X GET http://localhost:8080/metrics
 . . .
 ```
 
-
-
 ## Try health
 
 ```
@@ -55,8 +52,6 @@ curl -s -X GET http://localhost:8080/health
 {"outcome":"UP",...
 
 ```
-
-
 
 ## Building a Native Image
 
@@ -76,26 +71,24 @@ This uses the helidon-maven-plugin to perform the native compilation using your 
 Once it completes start the application using the native executable (no JVM!):
 
 ```
-./target/helidon-quickstart-mp
+./target/bff
 ```
 
 Yep, it starts fast. You can exercise the application’s endpoints as before.
 
-
 ## Building the Docker Image
 
 ```
-docker build -t helidon-quickstart-mp .
+docker build -t bff .
 ```
 
 ## Running the Docker Image
 
 ```
-docker run --rm -p 8080:8080 helidon-quickstart-mp:latest
+docker run --rm -p 8080:8080 bff:latest
 ```
 
 Exercise the application as described above.
-                                
 
 ## Building a Custom Runtime Image
 
@@ -108,11 +101,11 @@ mvn package -Pjlink-image
 This uses the helidon-maven-plugin to perform the custom image generation.
 After the build completes it will report some statistics about the build including the reduction in image size.
 
-The target/helidon-quickstart-mp-jri directory is a self contained custom image of your application. It contains your application,
+The target/bff-jri directory is a self contained custom image of your application. It contains your application,
 its runtime dependencies and the JDK modules it depends on. You can start your application using the provide start script:
 
 ```
-./target/helidon-quickstart-mp-jri/bin/start
+./target/bff-jri/bin/start
 ```
 
 Class Data Sharing (CDS) Archive
@@ -130,4 +123,3 @@ mvn package -Pjlink-image -Djlink.image.addClassDataSharingArchive=false
 ```
 
 For more information on available configuration options see the helidon-maven-plugin documentation.
-                                

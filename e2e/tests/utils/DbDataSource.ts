@@ -1,6 +1,10 @@
 import { DataSource } from "typeorm";
 import { Users } from "./db/entities-js/Users";
 
+/**
+ * How to use TypeORM:
+ * https://typeorm.io/
+ */
 export class DbDataSource {
   private static instance: DataSource;
   private constructor() {}

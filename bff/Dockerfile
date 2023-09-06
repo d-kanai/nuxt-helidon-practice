@@ -22,9 +22,9 @@ FROM openjdk:17-jdk-slim
 WORKDIR /helidon
 
 # Copy the binary built in the 1st stage
-COPY --from=build /helidon/target/helidon-quickstart-mp.jar ./
+COPY --from=build /helidon/target/bff.jar ./
 COPY --from=build /helidon/target/libs ./libs
 
-CMD ["java", "-jar", "helidon-quickstart-mp.jar"]
+CMD ["java", "-jar", "bff.jar"]
 
 EXPOSE 8080
