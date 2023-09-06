@@ -1,8 +1,18 @@
 # Separate folders for test cases by feature perspective
 ![](asset/readme.md_2023-09-06-11-42-31.png)
 
+# Prepare
+**please install node 18 and docker-compose first**  
+If you are using macOS and Podman, please add the following settings to your ~/.zshrc file.  
+Please adjust the following settings according to your OS and container application.
+```
+# Testcontainers for NodeJS
+export DOCKER_HOST=unix://$(podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}')
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+export TESTCONTAINERS_RYUK_DISABLED=true
+```
+
 # Usage
-**please install node 18 and docker-compose first**
 ## Start headless e2e test
 ```
 npm ci
