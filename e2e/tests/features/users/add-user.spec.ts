@@ -10,7 +10,7 @@ import { RedisClient } from "../../utils/RedisClient";
 let dataSource: DataSource;
 let userRepository: Repository<ObjectLiteral>;
 let wireMockRestClient: WireMockRestClient;
-let redisClient: RedisClientType<any>
+let redisClient: RedisClientType<any>;
 
 test.beforeAll(async () => {
   dataSource = await DbDataSource.getInstance();
@@ -66,7 +66,8 @@ test("ユーザ登録できること", async ({ page }) => {
   await Promise.all([
     page.waitForResponse(
       (response) =>
-        response.url().includes("/api/v1/users") && response.status() === 200
+        response.url().includes("/api/v1/users") && response.status() === 200,
+      { timeout: 5000 }
     ),
   ]);
 
