@@ -28,6 +28,10 @@ test("ユーザ登録できること", async ({ page }) => {
   // Arrange
   const expectedUsers = [
     {
+      name: "james.jones",
+      age: 23,
+    },
+    {
       name: "jiadong.chen",
       age: 39,
     },
@@ -36,6 +40,10 @@ test("ユーザ登録できること", async ({ page }) => {
   await wireMockRestClient.mappings.createMappingsFromDir(
     "./tests/features/users/external-api-mock"
   );
+  const user = new Users();
+  user.name = "james.jones";
+  user.age = 23;
+  await userRepository.save(user);
 
   // Act
   // Pageが全部ロードされるまで待つ
