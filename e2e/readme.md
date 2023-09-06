@@ -41,10 +41,10 @@ npm run convert:entities # Compile Entity from ts to js
 # One-stop e2e test cases
 add-user.spec.ts
 
-# Container startup is implemented using testcontainer
+# Use testcontainers to startup containers
 containers.ts
 
-I use set gloabl-setup.ts and global-teardown.ts into 
+I set gloabl-setup.ts and global-teardown.ts into 
 playwright.config.ts to start and stop the container environment before and after playwright starts.
 
 # Use TypeORM to interact with Database
