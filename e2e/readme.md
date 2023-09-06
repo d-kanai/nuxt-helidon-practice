@@ -3,16 +3,17 @@
 
 # Usage
 **please install node 18 and docker-compose first**
-## Start Headless test
+## Start headless e2e test
 ```
 npm ci
 npm run test
 ```
 
-## Start UI test
+## Start e2e test with UI
 ```
 npm run ui
 ```
+you can choice which test case you want to run.
 
 ## Confirm Test Report
 ```
@@ -27,7 +28,7 @@ npm run convert:entities # Compile Entity from ts to js
 ```
 **Be careful to use the JS version of Entity when using Entity in your test code.Because Playwright doesn't support experimental Typescript notation like annotations.**
 
-# One-stop test cases
+# One-stop e2e test cases
 add-user.spec.ts
 
 # Container startup is implemented using testcontainer
