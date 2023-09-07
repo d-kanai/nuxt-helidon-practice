@@ -101,3 +101,21 @@ services:
   #     ORACLE_PWD: "Passw0rd"
   #   ports:
   #     - "1521:1521"
+
+  # core-db-2:
+  #   container_name: core-db-2-container
+  #   image: container-registry.oracle.com/database/enterprise:19.19.0.0
+  #   environment:
+  #     ORACLE_SID: "ORCLCDB"
+  #     ORACLE_PDB: "ORCLPDB1"
+  #     ORACLE_PWD: "Passw0rd"
+  #   ports:
+  #     - "1521:1521"
+
+  portainer:
+    container_name: portainer-container
+    image: portainer/portainer-ce
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

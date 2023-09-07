@@ -7,7 +7,7 @@ async function startContainers() {
   const composeFilePath = path.join(__dirname, "../../../infra/local/");
   const composeFile = "docker-compose.yml";
   environment = await new DockerComposeEnvironment(composeFilePath, composeFile)
-  .withStartupTimeout(120000)
+  .withStartupTimeout(300000)
   .withWaitStrategy("ui-container", Wait.forHttp("/user", 3000))
   .withWaitStrategy("bff-container", Wait.forLogMessage("Server started on"))
   .withWaitStrategy("redis-container", Wait.forLogMessage("Ready to accept connections tcp"))
@@ -16,6 +16,7 @@ async function startContainers() {
   .withWaitStrategy("core-db-container", Wait.forLogMessage("database system is ready to accept connections"))
   .withWaitStrategy("pgadmin-container", Wait.forLogMessage("Booting worker with pid"))
   .withWaitStrategy("external-api-container", Wait.forHttp("/__admin/webapp", 3001))
+  .withWaitStrategy("portainer-container", Wait.forHttp("/", 9000))
   .withBuild()
   .up();
   console.log("DockerCompose environment upped.");
