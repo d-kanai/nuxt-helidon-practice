@@ -21,6 +21,7 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
 
+    <!-- MySQL DB Persistence Unit -->
     <persistence-unit name="pu1" transaction-type="JTA">
         <jta-data-source>ds1</jta-data-source>
         <class>com.example.coreapi.Pokemon</class>
@@ -29,11 +30,20 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
         </properties>
     </persistence-unit>
+    <!-- PostgreSQL Persistence Unit -->
     <persistence-unit name="pu2" transaction-type="JTA">
         <jta-data-source>ds2</jta-data-source>
         <class>com.example.coreapi.users.UserEntity</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+        </properties>
+    </persistence-unit>
+    <!-- Oracle DB Persistence Unit -->
+    <persistence-unit name="pu3" transaction-type="JTA">
+        <jta-data-source>ds3</jta-data-source>
+        <class>com.example.coreapi.users.UserEntity</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
         </properties>
     </persistence-unit>
 </persistence>

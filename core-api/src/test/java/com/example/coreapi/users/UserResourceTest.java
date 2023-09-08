@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @HelidonTest
-@AddConfig(key = "javax.sql.DataSource.ds2.dataSource.url", value = "jdbc:postgresql://localhost:5432/testdb")
+//@AddConfig(key = "javax.sql.DataSource.ds2.dataSource.url", value = "jdbc:postgresql://localhost:5432/testdb")
 @AddConfig(key = "external-api.host", value = "http://localhost")
 @AddConfig(key = "external-api.port", value = "3001")
 public class UserResourceTest {
