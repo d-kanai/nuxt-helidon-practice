@@ -25,6 +25,11 @@ jobs:
       with:
         node-version: '18'
 
+    - name: Setup Environment Variable
+      run: |
+        export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+        export TESTCONTAINERS_RYUK_DISABLED=true
+
     - name: Docker Login
       run: docker login -u "${{ secrets.ORACLE_REGISTRY_USERNAME }}" -p "${{ secrets.ORACLE_REGISTRY_PASSWORD }}" container-registry.oracle.com
 
