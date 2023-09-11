@@ -1,5 +1,7 @@
 # Prepare
-docker-compose is ready to use
+- docker-compose is ready to use
+- Please set the CPU count of your container virtual machine to 4 or above, and the memory to 8 or above.
+For example: `podman machine init --cpus 4 --memory 8096`
 
 # Usage
 ## create local environment
