@@ -11,12 +11,11 @@ export class DbDataSource {
   static getInstance(): DataSource {
     if (!DbDataSource.instance) {
       DbDataSource.instance = new DataSource({
-        type: "postgres",
-        host: "localhost",
-        port: 5432,
-        username: "postgres",
-        password: "postgres",
-        database: "testdb",
+        type: "oracle",
+        connectString: "localhost:1521/ORCLPDB1", // connect by thin
+        port: 1521,
+        username: "TEST_USER",
+        password: "testpassword",
         entities: [Users],
       });
     }

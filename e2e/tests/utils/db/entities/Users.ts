@@ -1,14 +1,14 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
-@Index("users_pkey", ["id"], { unique: true })
-@Entity("users", { schema: "public" })
+@Index("SYS_C007473", ["id"], { unique: true })
+@Entity("USERS")
 export class Users {
-  @PrimaryGeneratedColumn({ type: "integer", name: "id" })
+  @PrimaryGeneratedColumn({ type: "number", name: "ID" })
   id: number;
 
-  @Column("character varying", { name: "name", length: 50 })
+  @Column("varchar2", { name: "NAME", length: 50 })
   name: string;
 
-  @Column("integer", { name: "age" })
+  @Column("number", { name: "AGE" })
   age: number;
 }

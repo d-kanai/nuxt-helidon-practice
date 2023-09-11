@@ -7,7 +7,7 @@
     "test": "DEBUG=testcontainers playwright test",
     "ui": "DEBUG=testcontainers playwright test --ui",
     "report": "playwright show-report",
-    "generate:entities": "typeorm-model-generator -h localhost -d testdb -p 5432 -u postgres -x postgres -e postgres -o tests/utils/db/entities --noConfig",
+    "generate:entities": "typeorm-model-generator -h localhost -d ORCLPDB1 -p 1521 -u TEST_USER -x testpassword -e oracle -o tests/utils/db/entities --noConfig",
     "convert:entities": "tsc --incremental -p tests/utils/db/tsconfig.json"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "typeorm": "^0.3.17",
     "typeorm-model-generator": "^0.4.6",
     "typescript": "^5.2.2",
-    "wiremock-rest-client": "^1.10.0"
+    "wiremock-rest-client": "^1.10.0",
+    "oracledb": "^6.0"
   }
 }
