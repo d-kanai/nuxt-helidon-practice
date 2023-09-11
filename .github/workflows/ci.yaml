@@ -32,11 +32,11 @@ jobs:
     # npm依存関係をインストールする
     - name: Install dependencies
       run: |
-      cd e2e
-      npm ci --force
+        cd e2e
+        npm ci --force
 
     # E2Eテストを実行する
     - name: Run E2E tests
       run: |
-      cd e2e
-      npm run e2e
+        cd e2e
+        npm run e2e
