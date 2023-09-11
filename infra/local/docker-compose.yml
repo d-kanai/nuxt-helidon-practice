@@ -53,18 +53,8 @@ services:
 
   core-db:
     container_name: core-db-container
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: testdb
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./init-core-db:/docker-entrypoint-initdb.d  # Table schema to be included in advance
-  core-db-2:
-    container_name: core-db-2-container
-    image: container-registry.oracle.com/database/enterprise:19.19.0.0
+    image: container-registry.oracle.com/database/enterprise:19.19.0.0 # arm64 image
+    # image: container-registry.oracle.com/database/enterprise:21.3.0.0 # amd64 image
     shm_size: 4g
     environment:
       - TZ=Asia/Tokyo
@@ -78,25 +68,6 @@ services:
     volumes:
       - ./oracle/setup:/opt/oracle/scripts/setup
       - ./oracle/startup:/opt/oracle/scripts/startup
-
-  pgadmin:
-    container_name: pgadmin-container
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    command: # Register local PostgreSQL server with pdadmin in advance.
-      - sh
-      - -c
-      - |
-        /venv/bin/python3 setup.py --load-servers servers.json --user admin@example.com
-        tail -f /dev/null
-    volumes:
-      - ./pgadmin/servers.json:/pgadmin4/servers.json
-    depends_on:
-      - core-db
 
   external-api:
     container_name: external-api-container
