@@ -29,8 +29,8 @@ http://localhost:6379
 ## Core Api
 http://localhost:8081
 
-## Postgresql
-http://localhost:5432
+## Oracle DB
+http://localhost:1521
 
 ## External Api
 http://localhost:3001
@@ -38,9 +38,6 @@ http://localhost:3001
 # URLs of management website
 ## Redis Commander
 http://localhost:7379
-## pgAdmin(PostgreSQL Tools)
-http://localhost:5050  
-username: admin@example.com  
-password:admin
+
 ## Wiremock
 http://localhost:3001/__admin/webapp
