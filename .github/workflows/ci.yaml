@@ -42,6 +42,11 @@ jobs:
       run: |
         cd e2e
         npm ci --force
+    
+    - name: Install browsers
+      run: |
+        cd e2e
+        npx playwright install
 
     # E2Eテストを実行する 
     - name: Run E2E tests
