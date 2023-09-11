@@ -18,6 +18,12 @@ export TESTCONTAINERS_RYUK_DISABLED=true
 npm ci
 npm run test
 ```
+If you are using npm install, please use npm install --force.  
+Currently, TypeORM does not support node-oracledb 6.x.  
+The version of node-oracledb that can be installed on M1 is 6.0 or higher.  
+No other arm64 binaries are available.  
+Therefore, you must forcibly install node-oracledb 6.x using --force.  
+Support for Oracle driver v6 in TypeORM is listed as an [issue](https://github.com/typeorm/typeorm/issues/10277) on GitHub, so if there is an update, let's install the new version of TypeORM.
 
 ## Start e2e test with UI
 ```
