@@ -13,7 +13,7 @@ let wireMockRestClient: WireMockRestClient;
 let redisClient: RedisClientType<any>;
 
 test.beforeAll(async () => {
-  dataSource = await DbDataSource.getInstance();
+  dataSource = DbDataSource.getInstance();
   await dataSource.initialize();
   userRepository = dataSource.getRepository(Users);
   wireMockRestClient = ExternalApiMock.getInstance();
@@ -43,7 +43,7 @@ test("ユーザ登録できること", async ({ page }) => {
       name: "jiadong.chen",
       age: 39,
     },
-  ];
+  ].sort(compareByName());
 
   const expectedSessionItemSize = 1;
 
@@ -76,6 +76,7 @@ test("ユーザ登録できること", async ({ page }) => {
   const actualUsersWithoutId = actualUsers.map(
     ({ id, ...otherProps }) => otherProps
   ); // id を除外
+  actualUsersWithoutId.sort(compareByName());
 
   const actualSessionKeys = await redisClient.keys("*");
   const actualSessionItemSize = actualSessionKeys.length;
@@ -85,3 +86,17 @@ test("ユーザ登録できること", async ({ page }) => {
   expect(actualUsersWithoutId).toEqual(expectedUsers);
   expect(actualSessionItemSize).toBe(expectedSessionItemSize);
 });
+
+function compareByName():
+  | ((a: { [key: string]: any }, b: { [key: string]: any }) => number)
+  | undefined {
+  return (a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  };
+}
