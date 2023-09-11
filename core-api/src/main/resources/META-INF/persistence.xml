@@ -22,7 +22,7 @@
              version="3.0">
 
     <!-- MySQL DB Persistence Unit -->
-    <persistence-unit name="pu1" transaction-type="JTA">
+    <persistence-unit name="mysql" transaction-type="JTA">
         <jta-data-source>ds1</jta-data-source>
         <class>com.example.coreapi.Pokemon</class>
         <class>com.example.coreapi.PokemonType</class>
@@ -31,7 +31,7 @@
         </properties>
     </persistence-unit>
     <!-- PostgreSQL Persistence Unit -->
-    <persistence-unit name="pu2" transaction-type="JTA">
+    <persistence-unit name="postgresql" transaction-type="JTA">
         <jta-data-source>ds2</jta-data-source>
         <class>com.example.coreapi.users.UserEntity</class>
         <properties>
@@ -39,7 +39,7 @@
         </properties>
     </persistence-unit>
     <!-- Oracle DB Persistence Unit -->
-    <persistence-unit name="pu3" transaction-type="JTA">
+    <persistence-unit name="oracle" transaction-type="JTA">
         <jta-data-source>ds3</jta-data-source>
         <class>com.example.coreapi.users.UserEntity</class>
         <properties>

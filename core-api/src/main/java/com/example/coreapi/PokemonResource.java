@@ -34,7 +34,7 @@ import java.util.List;
 @Path("pokemon")
 public class PokemonResource {
 
-    @PersistenceContext(unitName = "pu1")
+    @PersistenceContext(unitName = "mysql")
     private EntityManager entityManager;
 
     @GET

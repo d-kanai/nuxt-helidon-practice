@@ -22,7 +22,7 @@ import jakarta.ws.rs.core.MediaType;
 @Path("type")
 public class PokemonTypeResource {
 
-    @PersistenceContext(unitName = "pu1")
+    @PersistenceContext(unitName = "mysql")
     private EntityManager entityManager;
 
     @GET
