@@ -38,7 +38,7 @@ jobs:
         cd e2e
         npm ci --force
 
-    # E2Eテストを実行する
+    # E2Eテストを実行する 
     - name: Run E2E tests
       run: |
         cd e2e
