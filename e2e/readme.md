@@ -15,7 +15,7 @@ export TESTCONTAINERS_RYUK_DISABLED=true
 # Usage
 ## Start headless e2e test
 ```
-npm ci
+npm ci --force
 npm run test
 ```
 Note:
