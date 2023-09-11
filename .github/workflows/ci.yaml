@@ -1,0 +1,42 @@
+# ワークフローの名前
+name: Run CI
+
+# このワークフローがトリガーされる条件
+on:
+  # 任意のプッシュイベントに対して（すべての変更に対してトリガー）
+  push:
+
+# 実行するジョブの定義
+jobs:
+  # ジョブの名前（任意）
+  build:
+    # 実行環境（この場合は最新のUbuntu）
+    runs-on: ubuntu-latest
+
+    # 実行するステップ
+    steps:
+    # コードをチェックアウトする
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    # Node.jsをセットアップする（バージョン14を使用）
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    # Docker Composeをインストールする
+    - name: Install Docker Compose
+      run: sudo apt-get install docker-compose
+
+    # npm依存関係をインストールする
+    - name: Install dependencies
+      run: |
+      cd e2e
+      npm ci --force
+
+    # E2Eテストを実行する
+    - name: Run E2E tests
+      run: |
+      cd e2e
+      npm run e2e
