@@ -22,12 +22,12 @@ jobs:
           node-version: '18'
       - name: build
         run : |
-        cd frontend
-        npm ci
+          cd frontend
+          npm ci
       - name: test
         run: |
-        cd frontend
-        npm run coverage
+          cd frontend
+          npm run coverage
 
   api-test:
     runs-on: ubuntu-latest
@@ -42,8 +42,8 @@ jobs:
           java-version: '17'
       - name: test
         run: |
-        cd bff
-        mvn test
+          cd bff
+          mvn test
 
   e2e-test:
     runs-on: ubuntu-latest
