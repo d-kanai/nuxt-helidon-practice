@@ -15,9 +15,9 @@ jobs:
     steps:
       - run: echo component-test
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "18"
       - name: build
@@ -35,9 +35,9 @@ jobs:
     steps:
       - run: echo api-test
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: "17"
@@ -52,9 +52,9 @@ jobs:
     steps:
       - run: echo e2e-test
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "18"
       - name: Setup Environment Variable
