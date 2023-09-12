@@ -1,55 +1,84 @@
-# ワークフローの名前
-name: Run CI
+name: CICD
 
-# このワークフローがトリガーされる条件
 on:
-  # 任意のプッシュイベントに対して（すべての変更に対してトリガー）
   push:
 
-# 実行するジョブの定義
 jobs:
-  # ジョブの名前（任意）
-  build:
-    # 実行環境（この場合は最新のUbuntu）
+  start:
     runs-on: ubuntu-latest
-
-    # 実行するステップ
     steps:
-    # コードをチェックアウトする
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - run: echo Start
 
-    # Node.jsをセットアップする（バージョン14を使用）
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+  component-test:
+    runs-on: ubuntu-latest
+    needs: start
+    steps:
+      - run: echo component-test
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - name: build
+        run : |
+        cd frontend
+        npm ci
+      - name: test
+        run: |
+        cd frontend
+        npm run coverage
 
-    - name: Setup Environment Variable
-      run: |
-        export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
-        export TESTCONTAINERS_RYUK_DISABLED=true
+  api-test:
+    runs-on: ubuntu-latest
+    needs: start
+    steps:
+      - run: echo api-test
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+      - name: test
+        run: |
+        cd bff
+        mvn test
 
-    - name: Docker Login
-      run: docker login -u "${{ secrets.ORACLE_REGISTRY_USERNAME }}" -p "${{ secrets.ORACLE_REGISTRY_PASSWORD }}" container-registry.oracle.com
+  e2e-test:
+    runs-on: ubuntu-latest
+    needs: [component-test, api-test]
+    steps:
+      - run: echo e2e-test
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - name: Setup Environment Variable
+        run: |
+          export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+          export TESTCONTAINERS_RYUK_DISABLED=true
+      - name: Docker Login
+        run: docker login -u "${{ secrets.ORACLE_REGISTRY_USERNAME }}" -p "${{ secrets.ORACLE_REGISTRY_PASSWORD }}" container-registry.oracle.com
+      - name: Install Docker Compose
+        run: sudo apt-get install docker-compose
+      - name: Install dependencies
+        run: |
+          cd e2e
+          npm ci --force
+      - name: Install browsers
+        run: |
+          cd e2e
+          npx playwright install
+      - name: Run E2E tests
+        run: |
+          cd e2e
+          npm run test
 
-    # Docker Composeをインストールする
-    - name: Install Docker Compose
-      run: sudo apt-get install docker-compose
-
-    # npm依存関係をインストールする
-    - name: Install dependencies
-      run: |
-        cd e2e
-        npm ci --force
-    
-    - name: Install browsers
-      run: |
-        cd e2e
-        npx playwright install
-
-    # E2Eテストを実行する 
-    - name: Run E2E tests
-      run: |
-        cd e2e
-        npm run test
+  deploy:
+    runs-on: ubuntu-latest
+    needs: e2e-test
+    steps:
+      - run: echo Deploy
