@@ -4,14 +4,8 @@ on:
   push:
 
 jobs:
-  start:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Start
-
   component-test:
     runs-on: ubuntu-latest
-    needs: start
     steps:
       - run: echo component-test
       - name: Checkout code
@@ -31,7 +25,6 @@ jobs:
 
   api-test:
     runs-on: ubuntu-latest
-    needs: start
     steps:
       - run: echo api-test
       - name: Checkout code
