@@ -18,7 +18,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,7 +34,6 @@ public class HelidonUserApiTest {
 
     @BeforeEach
     public void beforeEach() {
-        MockitoAnnotations.openMocks(this);
         this.mapper = new ObjectMapper();
     }
 
