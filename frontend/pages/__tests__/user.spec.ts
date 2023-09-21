@@ -1,4 +1,4 @@
-import { expect, test, describe, beforeEach } from "vitest";
+import { expect, test, describe, beforeEach, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import flushPromises from "flush-promises";
 import waitForExpect from "wait-for-expect";
@@ -7,6 +7,17 @@ import { axiosInstance } from "../../apis/axios-instance";
 import UserPage from "../user.vue";
 
 const axiosMock = new MockAdapter(axiosInstance);
+vi.mock("#imports", () => {
+  return {
+    useRuntimeConfig() {
+      return {
+        public: {
+          apiBase: "",
+        },
+      };
+    },
+  };
+});
 
 describe("user.vue", () => {
   beforeEach(() => {
