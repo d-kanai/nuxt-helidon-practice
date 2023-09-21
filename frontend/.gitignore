@@ -4,6 +4,7 @@
 .nitro
 .cache
 dist
+coverage
 
 # Node dependencies
 node_modules
@@ -16,8 +17,3 @@ logs
 .DS_Store
 .fleet
 .idea
-
-# Local env files
-.env
-.env.*
-!.env.example

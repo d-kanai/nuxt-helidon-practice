@@ -8,12 +8,14 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@types/jest": "^29.5.3",
     "@types/node": "^18.16.19",
+    "@vitest/coverage-v8": "^0.34.4",
     "@vue/test-utils": "^2.4.1",
     "axios-mock-adapter": "^1.21.5",
     "flush-promises": "^1.0.2",
