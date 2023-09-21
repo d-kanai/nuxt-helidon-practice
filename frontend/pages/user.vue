@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Form, Field } from "vee-validate";
 import { object, string } from "yup";
 import { ref } from "vue";
