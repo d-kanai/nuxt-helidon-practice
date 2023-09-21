@@ -3,10 +3,10 @@ import { mount } from "@vue/test-utils";
 import flushPromises from "flush-promises";
 import waitForExpect from "wait-for-expect";
 import MockAdapter from "axios-mock-adapter";
-import { axiosInstance } from "../../apis/axios-instance";
+import { CustomAxios } from "../../apis/axios-instance";
 import UserPage from "../user.vue";
 
-const axiosMock = new MockAdapter(axiosInstance);
+const axiosMock = new MockAdapter(CustomAxios.getInstance());
 vi.mock("#imports", () => {
   return {
     useRuntimeConfig() {
