@@ -9,7 +9,7 @@ export class ExternalApiMock {
   private constructor() {}
   static getInstance(): WireMockRestClient {
     if (!ExternalApiMock.instance) {
-      return new WireMockRestClient("http://localhost:3001");
+      return new WireMockRestClient(process.env.EXTERNAL_MOCK_URL || "");
     }
     return ExternalApiMock.instance;
   }

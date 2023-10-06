@@ -1,8 +1,10 @@
-import { type FullConfig } from '@playwright/test';
-import { stopContainers } from './container';
+import { type FullConfig } from "@playwright/test";
+import { stopContainers } from "./container";
 
 async function globalTeardown(config: FullConfig) {
-  await stopContainers();
+  if (process.env.DOCKER_COMPOSE == "on") {
+    await stopContainers();
+  }
 }
 
 export default globalTeardown;

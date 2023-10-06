@@ -11,11 +11,11 @@ export class DbDataSource {
   static getInstance(): DataSource {
     if (!DbDataSource.instance) {
       DbDataSource.instance = new DataSource({
-        type: "oracle",
-        connectString: "localhost:1521/ORCLPDB1", // connect by thin
-        port: 1521,
-        username: "TEST_USER",
-        password: "testpassword",
+        type: process.env.DB_TYPE as any,
+        connectString: process.env.DB_CONNECT_STRING, // connect by thin
+        port: Number(process.env.DB_PORT),
+        username: process.env.DB_USER,
+        password: process.env.DB_PASS,
         entities: [Users],
       });
     }
