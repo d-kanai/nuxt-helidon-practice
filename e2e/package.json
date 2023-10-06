@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "DEBUG=testcontainers playwright test",
+    "test:ci": "ENVIRONMENT=ci playwright test",
     "ui": "DEBUG=testcontainers playwright test --ui",
     "report": "playwright show-report",
     "generate:entities": "typeorm-model-generator -h localhost -d ORCLPDB1 -p 1521 -u TEST_USER -x testpassword -e oracle -o tests/utils/db/entities --noConfig",
@@ -16,13 +17,14 @@
   "devDependencies": {
     "@playwright/test": "^1.37.0",
     "@types/pg": "^8.10.2",
+    "dotenv": "^16.3.1",
+    "oracledb": "^6.0",
     "pg": "^8.11.2",
     "redis": "^4.6.8",
     "testcontainers": "^10.2.0",
     "typeorm": "^0.3.17",
     "typeorm-model-generator": "^0.4.6",
     "typescript": "^5.2.2",
-    "wiremock-rest-client": "^1.10.0",
-    "oracledb": "^6.0"
+    "wiremock-rest-client": "^1.10.0"
   }
 }
