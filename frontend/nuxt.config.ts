@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      apiBase: "",
+      apiBase: process.env.API_BASE,
     },
   },
   devtools: { enabled: true },

@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
+    "build:ci": "nuxt build --dotenv .env.ci",
     "dev": "nuxt dev",
+    "dev:ci": "nuxt dev --dotenv .env.ci",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
