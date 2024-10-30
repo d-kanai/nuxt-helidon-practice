@@ -53,21 +53,33 @@ services:
 
   core-db:
     container_name: core-db-container
-    image: container-registry.oracle.com/database/enterprise:19.19.0.0 # arm64 image
-    # image: container-registry.oracle.com/database/enterprise:21.3.0.0 # amd64 image
-    shm_size: 4g
+    image: postgres:latest
     environment:
-      - TZ=Asia/Tokyo
-      # - NLS_LANG=Japanese_Japan.UTF-8
-      - ORACLE_SID=ORCLCDB
-      - ORACLE_PDB=ORCLPDB1
-      - ORACLE_PWD=Passw0rd
-      - DB_MEMORY=2g
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: testdb
     ports:
-      - "1521:1521"
+      - "5432:5432"
     volumes:
-      - ./oracle/setup:/opt/oracle/scripts/setup
-      - ./oracle/startup:/opt/oracle/scripts/startup
+      - ./postgresql/init-core-db:/docker-entrypoint-initdb.d  # Table schema to be included in advance
+
+  # core-db:
+  #   container_name: core-db-container
+  #   image: container-registry.oracle.com/database/enterprise:19.19.0.0 # arm64 image
+  #   # image: container-registry.oracle.com/database/enterprise:21.3.0.0 # amd64 image
+  #   shm_size: 4g
+  #   environment:
+  #     - TZ=Asia/Tokyo
+  #     # - NLS_LANG=Japanese_Japan.UTF-8
+  #     - ORACLE_SID=ORCLCDB
+  #     - ORACLE_PDB=ORCLPDB1
+  #     - ORACLE_PWD=Passw0rd
+  #     - DB_MEMORY=2g
+  #   ports:
+  #     - "1521:1521"
+  #   volumes:
+  #     - ./oracle/setup:/opt/oracle/scripts/setup
+  #     - ./oracle/startup:/opt/oracle/scripts/startup
 
   external-api:
     container_name: external-api-container

@@ -13,7 +13,10 @@ async function startContainers() {
   .withWaitStrategy("redis-container", Wait.forLogMessage("Ready to accept connections tcp"))
   .withWaitStrategy("redis-commander-container", Wait.forLogMessage("access with browser at"))
   .withWaitStrategy("core-api-container", Wait.forLogMessage("Server started on"))
-  .withWaitStrategy("core-db-container", Wait.forLogMessage("DATABASE IS READY TO USE"))
+  // postgresql
+  .withWaitStrategy("core-db-container", Wait.forLogMessage("database system is ready to accept connections"))
+  // oracle
+  // .withWaitStrategy("core-db-container", Wait.forLogMessage("DATABASE IS READY TO USE"))
   .withWaitStrategy("pgadmin-container", Wait.forLogMessage("Booting worker with pid"))
   .withWaitStrategy("external-api-container", Wait.forHttp("/__admin/webapp", 3001))
   .withWaitStrategy("portainer-container", Wait.forHttp("/", 9000))

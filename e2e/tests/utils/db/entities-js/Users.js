@@ -18,18 +18,18 @@ let Users = class Users {
 };
 exports.Users = Users;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "number", name: "ID" }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "integer", name: "id" }),
     __metadata("design:type", Number)
 ], Users.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)("varchar2", { name: "NAME", length: 50 }),
+    (0, typeorm_1.Column)("character varying", { name: "name", length: 50 }),
     __metadata("design:type", String)
 ], Users.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)("number", { name: "AGE" }),
+    (0, typeorm_1.Column)("integer", { name: "age" }),
     __metadata("design:type", Number)
 ], Users.prototype, "age", void 0);
 exports.Users = Users = __decorate([
-    (0, typeorm_1.Index)("SYS_C007473", ["id"], { unique: true }),
-    (0, typeorm_1.Entity)("USERS")
+    (0, typeorm_1.Index)("users_pkey", ["id"], { unique: true }),
+    (0, typeorm_1.Entity)("users", { schema: "public" })
 ], Users);

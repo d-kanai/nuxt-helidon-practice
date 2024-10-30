@@ -13,7 +13,8 @@ import jakarta.ws.rs.core.Response;
 @Path("/api/v1/users")
 public class UserResource {
 
-    @PersistenceContext(unitName = "oracle")
+    @PersistenceContext(unitName = "postgresql")
+    // @PersistenceContext(unitName = "oracle")
     EntityManager em;
 
     private final ExternalApiClient externalApiClient;

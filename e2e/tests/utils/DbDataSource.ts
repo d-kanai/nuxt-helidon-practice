@@ -12,10 +12,11 @@ export class DbDataSource {
     if (!DbDataSource.instance) {
       DbDataSource.instance = new DataSource({
         type: process.env.DB_TYPE as any,
-        connectString: process.env.DB_CONNECT_STRING, // connect by thin
+        host: process.env.HOST,
         port: Number(process.env.DB_PORT),
         username: process.env.DB_USER,
         password: process.env.DB_PASS,
+        database: process.env.DATABASE,
         entities: [Users],
       });
     }
